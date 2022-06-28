@@ -1,10 +1,10 @@
 package RV64
-
-import org.scalatest._
+import Wallace._
+//import org.scalatest._
 import org.scalatest.flatspec.AnyFlatSpec
 import chisel3._
 import chisel3.iotesters._
-import chisel3.util._
+//import chisel3.util._
 import scala.util.Random
 import chiseltest._
 
@@ -16,6 +16,7 @@ PeekPokeTester:
     step:               advance the dut's clock
 */
 //modify the dut name to use
+//old ways.better use test
 class TesterPP(dut:Inst_Rom) extends PeekPokeTester(dut) {
     val Rnd = new Random()
     //val cnt = RegInit(0.U)
@@ -30,26 +31,32 @@ class TesterPP(dut:Inst_Rom) extends PeekPokeTester(dut) {
 
 class TesterSpec extends AnyFlatSpec with ChiselScalatestTester{
     //not so beautiful?...
-    val DUT = new Inst_Rom()
-    val Rnd = new Random()
-    println(getVerilogString(DUT)
-    "test" should "pass" in{
-        test(DUT){ dut => 
+    val Rnd = new Random()      //for test use...
 
-            for(a <- 0 to 1; b <- 0 to 9){
+    println("\u001b[40;33mgenerate verilog code...\u001b[0m")
+    (new chisel3.stage.ChiselStage).emitVerilog(
+        new BoothEncoder4() ,Array("--target-dir","test"))
+    
+    println(getVerilogString(new BoothEncoder4))
+
+    "test" should "pass" in{
+        test(new BoothEncoder4){ dut => 
+
+            for(a <- 0 to 31/*; b <- 0 to 9*/){
 //                dut.io.i1.poke(1.U)
 //                dut.io.i2.poke(0.U)
-                if(a<1)dut.io.en.poke(true.B)
-                else   dut.io.en.poke(false.B)
-                dut.io.addr_i.poke(b.U)
+//                if(a<1)dut.io.en.poke(true.B)
+                //else   dut.io.en.poke(false.B)
+                dut.io.data.poke(a.U)
                 dut.clock.step(1)
-                println("inst = " + dut.io.inst_o.peek().toString)
+                println("weight = " + dut.io.weight.peek().toString)
+                println("neg = " + dut.io.neg.peek().toString)
             }   
 
         }
     }
 }
-
+/*
 object Tester {
     def main(args:Array[String]):Unit = {
         println("start testing...")
@@ -65,3 +72,4 @@ object Tester {
         println("success!")
     }
 }
+*/
