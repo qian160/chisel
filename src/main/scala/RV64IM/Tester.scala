@@ -15,41 +15,27 @@ PeekPokeTester:
     expect:             check the output port
     step:               advance the dut's clock
 */
-//modify the dut name to use
-//old ways.better use test
-class TesterPP(dut:Inst_Rom) extends PeekPokeTester(dut) {
-    val Rnd = new Random()
-    //val cnt = RegInit(0.U)
-    //cnt := cnt + 1.U
-    while(true){
-        //dut.io.addr_i := cnt
-        //poke(dut.io.addr_i,cnt)
-        step (1)
-        //println("Result is "+peek(dut.io.inst_o.toString))
-    }
-}
 
 class TesterSpec extends AnyFlatSpec with ChiselScalatestTester{
-    //not so beautiful?...
+    //this is so convenient!! run with sbt "testOnly RV64.TesterSpec"
     val Rnd = new Random()      //for test use...
-
-    println("\u001b[40;33mgenerate verilog code...\u001b[0m")
-    (new chisel3.stage.ChiselStage).emitVerilog(
-        new BoothEncoder4() ,Array("--target-dir","test"))
+    val prefix = "\u001b[40;35m[test]\u001b[0m"
+    println("\u001b[40;32mgenerate verilog code...\u001b[0m")
     
-    println(getVerilogString(new BoothEncoder4))
-
+//    (new chisel3.stage.ChiselStage).emitVerilog(
+//        new BoothEncoder8() ,Array("--target-dir","Verilog"))
+    
+    println(getVerilogString(new BoothEncoder8))
+    var cnt = 0
     "test" should "pass" in{
-        test(new BoothEncoder4){ dut => 
+        test(new BoothEncoder8){ dut => 
 
-            for(a <- 0 to 31/*; b <- 0 to 9*/){
-//                dut.io.i1.poke(1.U)
-//                dut.io.i2.poke(0.U)
-//                if(a<1)dut.io.en.poke(true.B)
-                //else   dut.io.en.poke(false.B)
-                dut.io.data.poke(a.U)
+            for(a <- 0 to 511/*; b <- 0 to 9*/){
+                dut.io.data.poke(a)
                 dut.clock.step(1)
-                println("weight = " + dut.io.weight.peek().toString)
+                println(prefix +cnt.toString +" :")
+                cnt = cnt + 1
+                print("weight = " + dut.io.weight.peek().toString + ",\t")
                 println("neg = " + dut.io.neg.peek().toString)
             }   
 
@@ -70,6 +56,21 @@ object Tester {
         }
 
         println("success!")
+    }
+}
+*/
+
+/*
+    old methods, should avoid to use!
+class TesterPP(dut:Inst_Rom) extends PeekPokeTester(dut) {
+    val Rnd = new Random()
+    //val cnt = RegInit(0.U)
+    //cnt := cnt + 1.U
+    while(true){
+        //dut.io.addr_i := cnt
+        //poke(dut.io.addr_i,cnt)
+        step (1)
+        //println("Result is "+peek(dut.io.inst_o.toString))
     }
 }
 */
