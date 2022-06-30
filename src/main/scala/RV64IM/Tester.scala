@@ -16,29 +16,41 @@ PeekPokeTester:
     step:               advance the dut's clock
 */
 
+class simple extends Module{
+    val io = IO(new Bundle{
+        val i = Input(UInt(8.W))
+        val o = Output(SInt(16.W))
+    })
+    io.o := io.i.asSInt() * io.i.asSInt()
+}
+
 class TesterSpec extends AnyFlatSpec with ChiselScalatestTester{
-    //this is so convenient!! run with sbt "testOnly RV64.TesterSpec"
     val Rnd = new Random()      //for test use...
-    val prefix = "\u001b[40;35m[test]\u001b[0m"
+
+    val purple = "\u001b[40;35m[test]\u001b[0m"
+    val yellow = "\u001b[40;33m[test]\u001b[0m"
+    val blue   = "\u001b[40;34m[test]\u001b[0m"
+    val red    = "\u001b[40;31m[test]\u001b[0m"
+    val green  = "\u001b[40;32m[test]\u001b[0m"
+
     println("\u001b[40;32mgenerate verilog code...\u001b[0m")
-    
-//    (new chisel3.stage.ChiselStage).emitVerilog(
-//        new BoothEncoder8() ,Array("--target-dir","Verilog"))
-    
-    println(getVerilogString(new BoothEncoder8))
+/*
+    (new chisel3.stage.ChiselStage).emitVerilog(
+        new BoothEncoder8() ,Array("--target-dir","Verilog"))
+*/
+    println(getVerilogString(new BoothEncoder8()))
     var cnt = 0
-    "test" should "pass" in{
-        test(new BoothEncoder8){ dut => 
-
-            for(a <- 0 to 511/*; b <- 0 to 9*/){
+    "test Booth-8" should "pass" in{
+        test(new BoothEncoder8()){ dut => 
+        var cnt = 0
+            for(b <- 0 to 1; a <- 0  to 511 ){
+                dut.io.sign.poke(if(b == 0)true.B else false.B)
                 dut.io.data.poke(a)
-                dut.clock.step(1)
-                println(prefix +cnt.toString +" :")
+                val v1 = dut.io.weight.peek()
+                val v2 = dut.io.neg.peek()
                 cnt = cnt + 1
-                print("weight = " + dut.io.weight.peek().toString + ",\t")
-                println("neg = " + dut.io.neg.peek().toString)
-            }   
-
+                println(s"$purple $cnt \t $v1 \t $v2")
+            }
         }
     }
 }
