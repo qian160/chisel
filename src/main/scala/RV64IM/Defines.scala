@@ -1,0 +1,243 @@
+package RV64
+
+import chisel3._
+import chisel3.util._
+
+object OptCode {
+    //let Alu know what to do
+    val ADD = 0.U(5.W)
+    val SUB = 1.U(5.W)
+    val SLT = 2.U(5.W)
+    val SLTU = 3.U(5.W)
+    val XOR = 4.U(5.W)
+    val OR  = 5.U(5.W)
+    val AND = 6.U(5.W)
+    val SLL = 7.U(5.W)
+    val SRL = 8.U(5.W)
+    val SRA = 9.U(5.W)
+
+    val JALR = 10.U(5.W)
+
+    val MUL = 11.U(5.W)
+    val MULH = 12.U(5.W)
+    val MULHSU = 13.U(5.W)
+    val MULHU = 14.U(5.W)
+    val DIV = 15.U(5.W)
+    val DIVU = 16.U(5.W)
+    val REM = 17.U(5.W)
+    val REMU = 18.U(5.W)
+
+    val LW  = 24.U(5.W) // 11000
+    val LH  = 26.U(5.W) // 11010
+    val LHU = 27.U(5.W) // 11011
+    val LB  = 28.U(5.W) // 11100
+    val LBU = 29.U(5.W) // 11101
+
+    val SW = "b10100".U // 20
+    val SH = "b10101".U
+    val SB = "b10110".U
+
+    //main instruction types, opcode. used to contorl the final result in ex stage
+    val alu_reg    = "b0110011".U
+    val alu_imm    = "b0010011".U
+    val Imm        = "b0000011".U
+    val Store      = "b0100011".U
+    val Branch     = "b1100011".U
+
+    val jal        = "b1101111".U
+    val jalr       = "b1100111".U
+    val lui        = "b0110111".U
+    val auipc      = "b0010111".U
+
+    val ecall_ebrk = "b1110011".U  //imm diff: ecall = 0, ebreak = 1
+    /*
+    val ecall      = "h73".U    
+    val ebreak     = "10073".U
+    */  
+}
+
+object InstType {
+  // R,I,S,B,U,J
+    val BAD = 0.U(4.W)
+    val R = 1.U(4.W)
+    val I = 2.U(4.W)
+    val S = 3.U(4.W)
+    val B = 4.U(4.W)
+    val U = 5.U(4.W)
+    val J = 6.U(4.W)
+
+    val SYS = 7.U(4.W) // CSR or ECALL
+    val FENCE = 8.U(4.W)
+}
+
+object Insts { // idea from mini riscv
+//  // Loads
+    def LB     = BitPat("b?????????????????000?????0000011")
+    def LH     = BitPat("b?????????????????001?????0000011")
+    def LW     = BitPat("b?????????????????010?????0000011")
+    def LBU    = BitPat("b?????????????????100?????0000011")
+    def LHU    = BitPat("b?????????????????101?????0000011")
+//  // Stores
+    def SB     = BitPat("b?????????????????000?????0100011")
+    def SH     = BitPat("b?????????????????001?????0100011")
+    def SW     = BitPat("b?????????????????010?????0100011")
+//  // Shifts
+    def SLL    = BitPat("b0000000??????????001?????0110011")
+    def SLLI   = BitPat("b0000000??????????001?????0010011")
+    def SRL    = BitPat("b0000000??????????101?????0110011")
+    def SRLI   = BitPat("b0000000??????????101?????0010011")
+    def SRA    = BitPat("b0100000??????????101?????0110011")
+    def SRAI   = BitPat("b0100000??????????101?????0010011")
+//  // Arithmetic
+    def ADD    = BitPat("b0000000??????????000?????0110011")
+    def ADDI   = BitPat("b?????????????????000?????0010011")
+    def SUB    = BitPat("b0100000??????????000?????0110011")
+    def LUI    = BitPat("b?????????????????????????0110111")
+    def AUIPC  = BitPat("b?????????????????????????0010111")
+//  // Logical
+    def XOR    = BitPat("b0000000??????????100?????0110011")
+    def XORI   = BitPat("b?????????????????100?????0010011")
+    def OR     = BitPat("b0000000??????????110?????0110011")
+    def ORI    = BitPat("b?????????????????110?????0010011")
+    def AND    = BitPat("b0000000??????????111?????0110011")
+    def ANDI   = BitPat("b?????????????????111?????0010011")
+//  // Compare
+    def SLT    = BitPat("b0000000??????????010?????0110011")
+    def SLTI   = BitPat("b?????????????????010?????0010011")
+    def SLTU   = BitPat("b0000000??????????011?????0110011")
+    def SLTIU  = BitPat("b?????????????????011?????0010011")
+//  // Branches
+    def BEQ    = BitPat("b?????????????????000?????1100011")
+    def BNE    = BitPat("b?????????????????001?????1100011")
+    def BLT    = BitPat("b?????????????????100?????1100011")
+    def BGE    = BitPat("b?????????????????101?????1100011")
+    def BLTU   = BitPat("b?????????????????110?????1100011")
+    def BGEU   = BitPat("b?????????????????111?????1100011")
+//  // Jump & Link
+    def JAL    = BitPat("b?????????????????????????1101111")
+    def JALR   = BitPat("b?????????????????000?????1100111")
+//  SYS
+    def SYS    = BitPat("b?????????????????????????1110011")
+// FENCE
+    def FENCE  = BitPat("b0000????????00000000000000001111")
+    def FENCE_I= BitPat("b00000000000000000001000000001111")
+
+// M-extension
+    def MUL    = BitPat("b0000001??????????000?????0110011")
+    def MULH   = BitPat("b0000001??????????001?????0110011")
+    def MULHSU = BitPat("b0000001??????????010?????0110011")
+    def MULHU  = BitPat("b0000001??????????011?????0110011")
+    def DIV    = BitPat("b0000001??????????100?????0110011")
+    def DIVU   = BitPat("b0000001??????????101?????0110011")
+    def REM    = BitPat("b0000001??????????110?????0110011")
+    def REMU   = BitPat("b0000001??????????111?????0110011")
+
+}
+
+object DecTable {
+  // default decode signals
+    val defaultDec =   List(InstType.BAD, OptCode.ADD)
+
+    val decMap = Array(     //type         option
+        Insts.ADDI    ->  List(InstType.I, OptCode.ADD),
+        Insts.SLTI    ->  List(InstType.I, OptCode.SLT),
+        Insts.SLTIU   ->  List(InstType.I, OptCode.SLTU),
+        Insts.XORI    ->  List(InstType.I, OptCode.XOR),
+        Insts.ORI     ->  List(InstType.I, OptCode.OR),
+        Insts.ANDI    ->  List(InstType.I, OptCode.AND),
+        Insts.SLLI    ->  List(InstType.I, OptCode.SLL),
+        Insts.SRLI    ->  List(InstType.I, OptCode.SRL),
+        Insts.SRAI    ->  List(InstType.I, OptCode.SRA),
+
+        Insts.LB      ->  List(InstType.I, OptCode.LB),
+        Insts.LH      ->  List(InstType.I, OptCode.LH),
+        Insts.LW      ->  List(InstType.I, OptCode.LW),
+        Insts.LBU     ->  List(InstType.I, OptCode.LBU),
+        Insts.LHU     ->  List(InstType.I, OptCode.LHU),
+
+        Insts.ADD     ->  List(InstType.R, OptCode.ADD),
+        Insts.SUB     ->  List(InstType.R, OptCode.SUB),
+        Insts.SLL     ->  List(InstType.R, OptCode.SLL),
+        Insts.SLT     ->  List(InstType.R, OptCode.SLT),
+        Insts.SLTU    ->  List(InstType.R, OptCode.SLTU),
+        Insts.XOR     ->  List(InstType.R, OptCode.XOR),
+        Insts.SRL     ->  List(InstType.R, OptCode.SRL),
+        Insts.SRA     ->  List(InstType.R, OptCode.SRA),
+        Insts.OR      ->  List(InstType.R, OptCode.OR),
+        Insts.AND     ->  List(InstType.R, OptCode.AND),
+
+        Insts.MUL     ->  List(InstType.R, OptCode.MUL),
+        Insts.MULH    ->  List(InstType.R, OptCode.MULH),
+        Insts.MULHSU  ->  List(InstType.R, OptCode.MULHSU),
+        Insts.DIV     ->  List(InstType.R, OptCode.DIV),
+        Insts.DIVU    ->  List(InstType.R, OptCode.DIVU),
+        Insts.REM     ->  List(InstType.R, OptCode.REM),
+        Insts.REMU    ->  List(InstType.R, OptCode.REMU),
+
+        Insts.SB      ->  List(InstType.S, OptCode.SB),
+        Insts.SH      ->  List(InstType.S, OptCode.SH),
+        Insts.SW      ->  List(InstType.S, OptCode.SW),
+/*
+        Insts.BEQ     ->  List(InstType.B, BType.BEQ),
+        Insts.BNE     ->  List(InstType.B, BType.BNE),
+        Insts.BLT     ->  List(InstType.B, BType.BLT),
+        Insts.BGE     ->  List(InstType.B, BType.BGE),
+        Insts.BLTU    ->  List(InstType.B, BType.BLTU),
+        Insts.BGEU    ->  List(InstType.B, BType.BGEU),
+
+        Insts.LUI     ->  List(InstType.U, UType.LUI),
+        Insts.AUIPC   ->  List(InstType.U, UType.AUIPC),
+
+        Insts.JAL     ->  List(InstType.J, OptCode.ADD),
+        Insts.JALR    ->  List(InstType.I, OptCode.JALR),
+
+        Insts.SYS     ->  List(InstType.SYS, OptCode.ADD), //Maybe ecall maybe csr
+        
+        Insts.FENCE   ->  List(InstType.FENCE, OptCode.ADD),
+        Insts.FENCE_I ->  List(InstType.FENCE, OptCode.ADD),
+*/
+
+    )
+
+  // fields, list index
+    val TYPE = 0
+    val OPT = 1
+}
+
+//BUNDLES
+
+class Forwarding extends Bundle{          
+    val addr   = Input(Bits(5.W))
+    val data   = Input(Bits(64.W))
+}
+
+class exInfo extends Bundle{
+    val oprand1   = Input(Bits(64.W))
+    val oprand2   = Input(Bits(64.W))
+    val rd        = Input(Bits(5.W))     //reg destination
+    val wreg      = Input(Bool())        //if this instruction will write the regfile
+    val opcode    = Input(Bits(7.W))     //for further judgement
+    val aluop     = Input(Bits(5.W))     //inform the alu what to do 
+}
+
+class id2Rf extends Bundle{
+    val ReadIdx1  = Input(Bits(5.W))
+    val ReadIdx2  = Input(Bits(5.W))
+}
+
+class rf2Id extends Bundle{
+    val RegData1  = Input(Bits(64.W))
+    val RegData2  = Input(Bits(64.W))
+}
+
+class writeRfOp extends Bundle{
+    val en       = Input(Bool())
+    val data     = Input(Bits(64.W))
+    val addr     = Input(Bits(5.W))
+}
+
+/*
+    The semantics of := on Bundle allow the RHS to have fields that are not present on the LHS, but not vice-versa. 
+    The high-level description of x := y is "drive all fields of x with corresponding fields of y."
+    The bi-directional <> operator is stricter.
+*/
