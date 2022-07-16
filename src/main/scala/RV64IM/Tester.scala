@@ -74,38 +74,7 @@ object TesterGen {
     def main(args:Array[String]):Unit = {
         args foreach println
         println(D.yellow+"generate verilog... "+D.ed)
-        (new chisel3.stage.ChiselStage).emitVerilog(new Mult,args)
-
-    }
-}
-object assembler{
-    def main(args: Array[String]):Unit = {
-        val Index = Map(
-            //to make life easier, omit the $ prefix
-            ("0"   -> "00000"),("1"   -> "00001"),("2"   -> "00010"),("3"   -> "00011"),
-            ("4"   -> "00100"),("5"   -> "00101"),("6"   -> "00110"),("7"   -> "00111"),
-            ("8"   -> "01000"),("9"   -> "01001"),("10"  -> "01010"),("11"  -> "01011"),
-            ("12"  -> "01100"),("13"  -> "01101"),("14"  -> "01110"),("15"  -> "01111"),
-            ("16"  -> "10000"),("17"  -> "10001"),("18"  -> "10010"),("19"  -> "10011"),
-            ("20"  -> "10100"),("21"  -> "10101"),("22"  -> "10110"),("23"  -> "10111"),
-            ("24"  -> "11000"),("25"  -> "11001"),("26"  -> "11010"),("27"  -> "11011"),
-            ("28"  -> "11100"),("29"  -> "11101"),("30"  -> "11110"),("31"  -> "11111"),
-        )
-        while(true){
-            val inst = StdIn.readLine()
-            val tokens = inst.split(" ")    //Array[String]
-            val opt = tokens(0)
-            val rs1 = Index(tokens(2))
-            val rs2 = Index(tokens(3))
-            val rd  = Index(tokens(1))
-
-            val code = opt match{
-                case "add" => "0000000" + rs2 + rs1 + "000" + rd + "0110011"
-                case "sub" => "0100000" + rs2 + rs1 + "000" + rd + "0110011"
-                case _     => "0000000"
-            }
-            println(code)
-        }
+        (new chisel3.stage.ChiselStage).emitVerilog(new Top,args)
 
     }
 }
