@@ -36,14 +36,6 @@ class Mult extends Module{
     val be8_6 = Module(new BoothEncoder8)
     val be8_7 = Module(new BoothEncoder8)
 
-    val ppg8_1 = Module(new Ppg8)
-    val ppg8_2 = Module(new Ppg8)
-    val ppg8_3 = Module(new Ppg8)
-    val ppg8_4 = Module(new Ppg8)
-    val ppg8_5 = Module(new Ppg8)
-    val ppg8_6 = Module(new Ppg8)
-    val ppg8_7 = Module(new Ppg8)
-
     val csa0 = Module(new Csa)
     val csa1 = Module(new Csa)
     val csa2 = Module(new Csa)
@@ -66,24 +58,108 @@ class Mult extends Module{
     val data6   = Mux(be8_6.io.neg, ~shift6 + 1.U, shift6)
     val data7   = Mux(be8_7.io.neg, ~shift7 + 1.U, shift7)
 
-    val b64 = data0;    val b66 = b64 << 2;    val b68 = b66 << 2;     val b70 = b68 << 2
+    val b64  = data0; val b66  = b64  << 2; val b68  = b66  << 2; val b70  = b68  << 2  //used by ppg0
+    val b72  = data1; val b74  = b72  << 2; val b76  = b74  << 2; val b78  = b76  << 2  //used by ppg1
+    val b80  = data2; val b82  = b80  << 2; val b84  = b82  << 2; val b86  = b84  << 2
+    val b88  = data3; val b90  = b88  << 2; val b92  = b90  << 2; val b94  = b90  << 2
+    val b96  = data4; val b98  = b96  << 2; val b100 = b98  << 2; val b102 = b100 << 2
+    val b104 = data5; val b106 = b104 << 2; val b108 = b106 << 2; val b110 = b108 << 2
+    val b112 = data6; val b114 = b112 << 2; val b116 = b114 << 2; val b118 = b116 << 2
+    val b120 = data7; val b122 = b120 << 2; val b124 = b122 << 2; val b126 = b124 << 2
+
 //ppg8_0's implementation
 //ppg8's organization: 4 be2, 4 ppg2, 2 csa, 1 ha
+//ppg0
     val be2_0_0 = Module(new BoothEncoder2)
     val be2_0_1 = Module(new BoothEncoder2)
     val be2_0_2 = Module(new BoothEncoder2)
     val be2_0_3 = Module(new BoothEncoder2)
-
     val ppg2_0_0  = Module(new Ppg2)
     val ppg2_0_1  = Module(new Ppg2)
     val ppg2_0_2  = Module(new Ppg2)
     val ppg2_0_3  = Module(new Ppg2)
-
     val csa0_0    = Module(new Csa)
     val csa0_1    = Module(new Csa)
+//ppg1
+    val be2_1_0 = Module(new BoothEncoder2)
+    val be2_1_1 = Module(new BoothEncoder2)
+    val be2_1_2 = Module(new BoothEncoder2)
+    val be2_1_3 = Module(new BoothEncoder2)
+    val ppg2_1_0  = Module(new Ppg2)
+    val ppg2_1_1  = Module(new Ppg2)
+    val ppg2_1_2  = Module(new Ppg2)
+    val ppg2_1_3  = Module(new Ppg2)
+    val csa1_0    = Module(new Csa)
+    val csa1_1    = Module(new Csa)
+
+    val be2_2_0 = Module(new BoothEncoder2)
+    val be2_2_1 = Module(new BoothEncoder2)
+    val be2_2_2 = Module(new BoothEncoder2)
+    val be2_2_3 = Module(new BoothEncoder2)
+    val ppg2_2_0  = Module(new Ppg2)
+    val ppg2_2_1  = Module(new Ppg2)
+    val ppg2_2_2  = Module(new Ppg2)
+    val ppg2_2_3  = Module(new Ppg2)
+    val csa2_0    = Module(new Csa)
+    val csa2_1    = Module(new Csa)
+
+    val be2_3_0 = Module(new BoothEncoder2)
+    val be2_3_1 = Module(new BoothEncoder2)
+    val be2_3_2 = Module(new BoothEncoder2)
+    val be2_3_3 = Module(new BoothEncoder2)
+    val ppg2_3_0  = Module(new Ppg2)
+    val ppg2_3_1  = Module(new Ppg2)
+    val ppg2_3_2  = Module(new Ppg2)
+    val ppg2_3_3  = Module(new Ppg2)
+    val csa3_0    = Module(new Csa)
+    val csa3_1    = Module(new Csa)
+
+    val be2_4_0 = Module(new BoothEncoder2)
+    val be2_4_1 = Module(new BoothEncoder2)
+    val be2_4_2 = Module(new BoothEncoder2)
+    val be2_4_3 = Module(new BoothEncoder2)
+    val ppg2_4_0  = Module(new Ppg2)
+    val ppg2_4_1  = Module(new Ppg2)
+    val ppg2_4_2  = Module(new Ppg2)
+    val ppg2_4_3  = Module(new Ppg2)
+    val csa4_0    = Module(new Csa)
+    val csa4_1    = Module(new Csa)
+
+    val be2_5_0 = Module(new BoothEncoder2)
+    val be2_5_1 = Module(new BoothEncoder2)
+    val be2_5_2 = Module(new BoothEncoder2)
+    val be2_5_3 = Module(new BoothEncoder2)
+    val ppg2_5_0  = Module(new Ppg2)
+    val ppg2_5_1  = Module(new Ppg2)
+    val ppg2_5_2  = Module(new Ppg2)
+    val ppg2_5_3  = Module(new Ppg2)
+    val csa5_0    = Module(new Csa)
+    val csa5_1    = Module(new Csa)
+
+    val be2_6_0 = Module(new BoothEncoder2)
+    val be2_6_1 = Module(new BoothEncoder2)
+    val be2_6_2 = Module(new BoothEncoder2)
+    val be2_6_3 = Module(new BoothEncoder2)
+    val ppg2_6_0  = Module(new Ppg2)
+    val ppg2_6_1  = Module(new Ppg2)
+    val ppg2_6_2  = Module(new Ppg2)
+    val ppg2_6_3  = Module(new Ppg2)
+    val csa6_0    = Module(new Csa)
+    val csa6_1    = Module(new Csa)
+
+    val be2_7_0 = Module(new BoothEncoder2)
+    val be2_7_1 = Module(new BoothEncoder2)
+    val be2_7_2 = Module(new BoothEncoder2)
+    val be2_7_3 = Module(new BoothEncoder2)
+    val ppg2_7_0  = Module(new Ppg2)
+    val ppg2_7_1  = Module(new Ppg2)
+    val ppg2_7_2  = Module(new Ppg2)
+    val ppg2_7_3  = Module(new Ppg2)
+    val csa7_0    = Module(new Csa)
+    val csa7_1    = Module(new Csa)
 
 
-    be2_0_0.io.data := Cat(be8_0.io.weight(1,0),0.U)
+    be2_0_0.io.data  := Cat(be8_0.io.weight(1,0),0.U)
     be2_0_1.io.data  := be8_0.io.weight(3,1)
     be2_0_2.io.data  := be8_0.io.weight(5,3)
     be2_0_3.io.data  := be8_0.io.weight(7,5)
@@ -115,6 +191,230 @@ class Mult extends Module{
     val p0 = csa0_1.io.temp_sum + csa0_1.io.carry
 
 
+    be2_1_0.io.data := Cat(be8_1.io.weight(1,0),0.U)
+    be2_1_1.io.data  := be8_1.io.weight(3,1)
+    be2_1_2.io.data  := be8_1.io.weight(5,3)
+    be2_1_3.io.data  := be8_1.io.weight(7,5)
+
+    ppg2_1_0.io.weight  := be2_1_0.io.weight
+    ppg2_1_0.io.neg     := be2_1_0.io.neg
+    ppg2_1_0.io.data    := b72
+
+    ppg2_1_1.io.weight  := be2_1_1.io.weight
+    ppg2_1_1.io.neg     := be2_1_1.io.neg
+    ppg2_1_1.io.data    := b74
+
+    ppg2_1_2.io.weight  := be2_1_2.io.weight
+    ppg2_1_2.io.neg     := be2_1_2.io.neg
+    ppg2_1_2.io.data    := b76
+
+    ppg2_1_3.io.weight  := be2_1_3.io.weight
+    ppg2_1_3.io.neg     := be2_1_3.io.neg
+    ppg2_1_3.io.data    := b78
+
+    csa1_0.io.a         := ppg2_1_0.io.output
+    csa1_0.io.b         := ppg2_1_1.io.output
+    csa1_0.io.c         := ppg2_1_2.io.output
+
+    csa1_1.io.a         := csa1_0.io.carry
+    csa1_1.io.b         := csa1_0.io.temp_sum
+    csa1_1.io.c         := ppg2_1_3.io.output
+
+    val p1 = csa1_1.io.temp_sum + csa1_1.io.carry
+
+
+    be2_2_0.io.data := Cat(be8_2.io.weight(1,0),0.U)
+    be2_2_1.io.data  := be8_2.io.weight(3,1)
+    be2_2_2.io.data  := be8_2.io.weight(5,3)
+    be2_2_3.io.data  := be8_2.io.weight(7,5)
+
+    ppg2_2_0.io.weight  := be2_2_0.io.weight
+    ppg2_2_0.io.neg     := be2_2_0.io.neg
+    ppg2_2_0.io.data    := b80
+
+    ppg2_2_1.io.weight  := be2_2_1.io.weight
+    ppg2_2_1.io.neg     := be2_2_1.io.neg
+    ppg2_2_1.io.data    := b82
+
+    ppg2_2_2.io.weight  := be2_2_2.io.weight
+    ppg2_2_2.io.neg     := be2_2_2.io.neg
+    ppg2_2_2.io.data    := b84
+
+    ppg2_2_3.io.weight  := be2_2_3.io.weight
+    ppg2_2_3.io.neg     := be2_2_3.io.neg
+    ppg2_2_3.io.data    := b86
+
+    csa2_0.io.a         := ppg2_2_0.io.output
+    csa2_0.io.b         := ppg2_2_1.io.output
+    csa2_0.io.c         := ppg2_2_2.io.output
+
+    csa2_1.io.a         := csa2_0.io.carry
+    csa2_1.io.b         := csa2_0.io.temp_sum
+    csa2_1.io.c         := ppg2_2_3.io.output
+
+    val p2 = csa2_1.io.temp_sum + csa2_1.io.carry
+
+
+    be2_3_0.io.data := Cat(be8_3.io.weight(1,0),0.U)
+    be2_3_1.io.data  := be8_3.io.weight(3,1)
+    be2_3_2.io.data  := be8_3.io.weight(5,3)
+    be2_3_3.io.data  := be8_3.io.weight(7,5)
+
+    ppg2_3_0.io.weight  := be2_3_0.io.weight
+    ppg2_3_0.io.neg     := be2_3_0.io.neg
+    ppg2_3_0.io.data    := b88
+
+    ppg2_3_1.io.weight  := be2_3_1.io.weight
+    ppg2_3_1.io.neg     := be2_3_1.io.neg
+    ppg2_3_1.io.data    := b90
+
+    ppg2_3_2.io.weight  := be2_3_2.io.weight
+    ppg2_3_2.io.neg     := be2_3_2.io.neg
+    ppg2_3_2.io.data    := b92
+
+    ppg2_3_3.io.weight  := be2_3_3.io.weight
+    ppg2_3_3.io.neg     := be2_3_3.io.neg
+    ppg2_3_3.io.data    := b94
+
+    csa3_0.io.a         := ppg2_3_0.io.output
+    csa3_0.io.b         := ppg2_3_1.io.output
+    csa3_0.io.c         := ppg2_3_2.io.output
+
+    csa3_1.io.a         := csa3_0.io.carry
+    csa3_1.io.b         := csa3_0.io.temp_sum
+    csa3_1.io.c         := ppg2_3_3.io.output
+
+    val p3 = csa3_1.io.temp_sum + csa3_1.io.carry
+
+
+    be2_4_0.io.data := Cat(be8_4.io.weight(1,0),0.U)
+    be2_4_1.io.data  := be8_4.io.weight(3,1)
+    be2_4_2.io.data  := be8_4.io.weight(5,3)
+    be2_4_3.io.data  := be8_4.io.weight(7,5)
+
+    ppg2_4_0.io.weight  := be2_4_0.io.weight
+    ppg2_4_0.io.neg     := be2_4_0.io.neg
+    ppg2_4_0.io.data    := b96
+
+    ppg2_4_1.io.weight  := be2_4_1.io.weight
+    ppg2_4_1.io.neg     := be2_4_1.io.neg
+    ppg2_4_1.io.data    := b98
+
+    ppg2_4_2.io.weight  := be2_4_2.io.weight
+    ppg2_4_2.io.neg     := be2_4_2.io.neg
+    ppg2_4_2.io.data    := b100
+
+    ppg2_4_3.io.weight  := be2_4_3.io.weight
+    ppg2_4_3.io.neg     := be2_4_3.io.neg
+    ppg2_4_3.io.data    := b102
+
+    csa4_0.io.a         := ppg2_4_0.io.output
+    csa4_0.io.b         := ppg2_4_1.io.output
+    csa4_0.io.c         := ppg2_4_2.io.output
+
+    csa4_1.io.a         := csa4_0.io.carry
+    csa4_1.io.b         := csa4_0.io.temp_sum
+    csa4_1.io.c         := ppg2_4_3.io.output
+
+    val p4 = csa4_1.io.temp_sum + csa4_1.io.carry
+
+
+    be2_5_0.io.data  := Cat(be8_5.io.weight(1,0),0.U)
+    be2_5_1.io.data  := be8_5.io.weight(3,1)
+    be2_5_2.io.data  := be8_5.io.weight(5,3)
+    be2_5_3.io.data  := be8_5.io.weight(7,5)
+
+    ppg2_5_0.io.weight  := be2_5_0.io.weight
+    ppg2_5_0.io.neg     := be2_5_0.io.neg
+    ppg2_5_0.io.data    := b104
+
+    ppg2_5_1.io.weight  := be2_5_1.io.weight
+    ppg2_5_1.io.neg     := be2_5_1.io.neg
+    ppg2_5_1.io.data    := b106
+
+    ppg2_5_2.io.weight  := be2_5_2.io.weight
+    ppg2_5_2.io.neg     := be2_5_2.io.neg
+    ppg2_5_2.io.data    := b108
+
+    ppg2_5_3.io.weight  := be2_5_3.io.weight
+    ppg2_5_3.io.neg     := be2_5_3.io.neg
+    ppg2_5_3.io.data    := b110
+
+    csa5_0.io.a         := ppg2_5_0.io.output
+    csa5_0.io.b         := ppg2_5_1.io.output
+    csa5_0.io.c         := ppg2_5_2.io.output
+
+    csa5_1.io.a         := csa5_0.io.carry
+    csa5_1.io.b         := csa5_0.io.temp_sum
+    csa5_1.io.c         := ppg2_5_3.io.output
+
+    val p5 = csa5_1.io.temp_sum + csa5_1.io.carry
+
+
+    be2_6_0.io.data := Cat(be8_6.io.weight(1,0),0.U)
+    be2_6_1.io.data  := be8_6.io.weight(3,1)
+    be2_6_2.io.data  := be8_6.io.weight(5,3)
+    be2_6_3.io.data  := be8_6.io.weight(7,5)
+
+    ppg2_6_0.io.weight  := be2_6_0.io.weight
+    ppg2_6_0.io.neg     := be2_6_0.io.neg
+    ppg2_6_0.io.data    := b112
+
+    ppg2_6_1.io.weight  := be2_6_1.io.weight
+    ppg2_6_1.io.neg     := be2_6_1.io.neg
+    ppg2_6_1.io.data    := b114
+
+    ppg2_6_2.io.weight  := be2_6_2.io.weight
+    ppg2_6_2.io.neg     := be2_6_2.io.neg
+    ppg2_6_2.io.data    := b116
+
+    ppg2_6_3.io.weight  := be2_6_3.io.weight
+    ppg2_6_3.io.neg     := be2_6_3.io.neg
+    ppg2_6_3.io.data    := b118
+
+    csa6_0.io.a         := ppg2_6_0.io.output
+    csa6_0.io.b         := ppg2_6_1.io.output
+    csa6_0.io.c         := ppg2_6_2.io.output
+
+    csa6_1.io.a         := csa6_0.io.carry
+    csa6_1.io.b         := csa6_0.io.temp_sum
+    csa6_1.io.c         := ppg2_6_3.io.output
+
+    val p6 = csa6_1.io.temp_sum + csa6_1.io.carry
+
+
+    be2_7_0.io.data := Cat(be8_7.io.weight(1,0),0.U)
+    be2_7_1.io.data  := be8_7.io.weight(3,1)
+    be2_7_2.io.data  := be8_7.io.weight(5,3)
+    be2_7_3.io.data  := be8_7.io.weight(7,5)
+
+    ppg2_7_0.io.weight  := be2_7_0.io.weight
+    ppg2_7_0.io.neg     := be2_7_0.io.neg
+    ppg2_7_0.io.data    := b120
+
+    ppg2_7_1.io.weight  := be2_7_1.io.weight
+    ppg2_7_1.io.neg     := be2_7_1.io.neg
+    ppg2_7_1.io.data    := b122
+
+    ppg2_7_2.io.weight  := be2_7_2.io.weight
+    ppg2_7_2.io.neg     := be2_7_2.io.neg
+    ppg2_7_2.io.data    := b124
+
+    ppg2_7_3.io.weight  := be2_7_3.io.weight
+    ppg2_7_3.io.neg     := be2_7_3.io.neg
+    ppg2_7_3.io.data    := b126
+
+    csa7_0.io.a         := ppg2_7_0.io.output
+    csa7_0.io.b         := ppg2_7_1.io.output
+    csa7_0.io.c         := ppg2_7_2.io.output
+
+    csa7_1.io.a         := csa7_0.io.carry
+    csa7_1.io.b         := csa7_0.io.temp_sum
+    csa7_1.io.c         := ppg2_7_3.io.output
+
+    val p7 = csa7_1.io.temp_sum + csa7_1.io.carry
+
+
 //end of ppg8 
 
     be8_0.io.data   :=  Cat(io.a(7,0), 0.U)
@@ -126,48 +426,16 @@ class Mult extends Module{
     be8_6.io.data   :=  io.a(55,47)
     be8_7.io.data   :=  io.a(63,55)
 
-//replace ppg8 with be2 and ppg2 later
-
-    ppg8_1.io.weight    :=  be8_1.io.weight
-    ppg8_1.io.data      :=  shift1
-    ppg8_1.io.neg       :=  be8_1.io.neg
-
-    ppg8_2.io.weight    :=  be8_2.io.weight
-    ppg8_2.io.data      :=  shift2
-    ppg8_2.io.neg       :=  be8_2.io.neg
-
-    ppg8_3.io.weight    :=  be8_3.io.weight
-    ppg8_3.io.data      :=  shift3
-    ppg8_3.io.neg       :=  be8_3.io.neg
-
-    ppg8_4.io.weight    :=  be8_4.io.weight
-    ppg8_4.io.data      :=  shift4
-    ppg8_4.io.neg       :=  be8_4.io.neg
-
-    ppg8_5.io.weight    :=  be8_5.io.weight
-    ppg8_5.io.data      :=  shift5
-    ppg8_5.io.neg       :=  be8_5.io.neg
-
-    ppg8_6.io.weight    :=  be8_6.io.weight
-    ppg8_6.io.data      :=  shift6
-    ppg8_6.io.neg       :=  be8_6.io.neg
-
-    ppg8_7.io.weight    :=  be8_7.io.weight
-    ppg8_7.io.data      :=  shift7
-    ppg8_7.io.neg       :=  be8_7.io.neg
-
-
 //`````````````````````````````````````````````````````
-    //substitute ppg8 later. ppg8 is an abstruction which is implemented by lower level be2 and ppg2
-    csa0.io.a   := ppg8_2.io.output
-    csa0.io.b   := ppg8_1.io.output
-/**/    csa0.io.c   := p0
+    csa0.io.a   := p0
+    csa0.io.b   := p1
+    csa0.io.c   := p2
 
-    csa1.io.a   := ppg8_5.io.output
-    csa1.io.b   := ppg8_4.io.output
-    csa1.io.c   := ppg8_3.io.output
+    csa1.io.a   := p5
+    csa1.io.b   := p4
+    csa1.io.c   := p3
 
-    csa2.io.a   := ppg8_6.io.output
+    csa2.io.a   := p6
     csa2.io.b   := csa1.io.carry
     csa2.io.c   := csa1.io.temp_sum
 
@@ -179,7 +447,7 @@ class Mult extends Module{
     csa4.io.b   := csa3.io.temp_sum
     csa4.io.c   := csa3.io.carry
 
-    csa5.io.a   := ppg8_7.io.output
+    csa5.io.a   := p7
     csa5.io.b   := csa4.io.temp_sum
     csa5.io.c   := csa4.io.carry
 
@@ -207,6 +475,7 @@ class Csa extends Module{
     io.temp_sum := io.a ^ io.b ^ io.c
 }
 //generate partial product, negative the input if neg == true
+//just an abstraction. Will be implemented by lower level components in detail
 class Ppg8 extends Module{
     val io = IO(new Bundle{
         val weight  = Input(Bits(8.W))  //range: [0, 128]

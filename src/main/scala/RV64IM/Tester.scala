@@ -74,9 +74,7 @@ object TesterGen {
     def main(args:Array[String]):Unit = {
         args foreach println
         println(D.yellow+"generate verilog... "+D.ed)
-        (new chisel3.stage.ChiselStage).emitVerilog(new Mult,
-            Array("--no-dce","--target-dir","Verilog")    
-        )
+        (new chisel3.stage.ChiselStage).emitVerilog(new Mult,args)
 
     }
 }

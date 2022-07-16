@@ -31,14 +31,14 @@ class Id extends Module{
 
     val inst     = io.id_inst_i
 
-//information about reg oprands
+    //information about reg oprands
     val regData1 = io.rf2Id.RegData1
     val regData2 = io.rf2Id.RegData2
     val rd       = inst(11,7)
     val rs1      = inst(19,15)
     val rs2      = inst(24,20)
 
-    val decRes   = ListLookup(inst,DecTable.defaultDec,DecTable.decMap)     //this returns list(instType,opt)
+    val decRes   = ListLookup(inst,DecTable.defaultDec,DecTable.decMap)     //returns list(instType,opt)
     val instType = decRes(DecTable.TYPE)
 
     val rs1Val  = PriorityMux(Seq(
