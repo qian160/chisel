@@ -13,6 +13,6 @@ class Inst_Rom extends Module{
     })
 
     val mem  = SyncReadMem(8 * 1024 , Bits(32.W))
-    loadMemoryFromFileInline(mem,"Inst_Rom.data")
+    loadMemoryFromFileInline(mem,"/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Inst_Rom.data")
     io.inst_o := Mux(io.reset, 0.U, mem(io.addr_i >> 2))
 }

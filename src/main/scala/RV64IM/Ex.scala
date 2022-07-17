@@ -9,11 +9,14 @@ class Ex extends RawModule{
 
         val exForwarding   = Flipped(new Forwarding)
         val writeRfOp      = Flipped(new writeRfOp)
+        val loadOp         = Flipped(new loadOp)
+        val storeOp        = Flipped(new storeOp)
     })
 
-    val oprand1 = io.exInfo.oprand1
-    val oprand2 = io.exInfo.oprand2
-    
+    val oprand1 =  io.exInfo.oprand1
+    val oprand2 =  io.exInfo.oprand2
+    io.storeOp  := io.exInfo.storeOp
+
     //ALU'S job, always produce one result
     val aluRes = MuxLookup(io.exInfo.aluop,0.U, Seq(
         ADD  -> (oprand1 + oprand2),
@@ -23,23 +26,57 @@ class Ex extends RawModule{
         XOR  -> (oprand1 ^ oprand2),
         OR   -> (oprand1 | oprand2),
         AND  -> (oprand1 & oprand2),
-        SLL  -> (oprand1 << oprand2(4,0)),
+        SLL  -> (oprand1 << oprand2(4,0)),    //shift left don't cause extension problems
         SRL  -> (oprand1 >> oprand2(4,0)),
-        SRA  -> (oprand1.asSInt >> oprand2(4,0)).asUInt
+        SRA  -> (oprand1.asSInt >> oprand2(4,0)).asUInt,
 
+        //calculate the address
+        LB   -> (oprand1 + oprand2),
+        LH   -> (oprand1 + oprand2),
+        LW   -> (oprand1 + oprand2),
+        LBU  -> (oprand1 + oprand2),
+        LHU  -> (oprand1 + oprand2),
+        SB   -> (oprand1 + oprand2),
+        SH   -> (oprand1 + oprand2),
+        SW   -> (oprand1 + oprand2),
         )
     )
-    //DEFAULT
-    io.writeRfOp    := 0.U.asTypeOf(new writeRfOp)
-    //choose the result
+    //load and general alu arith are treated similarily
+    //how do ex knows it's a load or store operation?
+    //here we use the spare eencoding space in aluop
+    //maybe try to improve this
+    io.loadOp.Width     := MuxLookup(io.exInfo.aluop, 0.U,Seq(
+        LB  ->  0.U,    LH  ->  1.U,    LW  ->  2.U//,  LD  ->  3.U
+    ))
+    io.writeRfOp    := 0.U.asTypeOf(new writeRfOp)    
+    io.loadOp   := 0.U.asTypeOf(new loadOp)     //default
+    //choose the result, can be improved
     switch(io.exInfo.opcode){
         is(alu_reg) {
             io.writeRfOp.data  := aluRes
             io.writeRfOp.en    := true.B
             io.writeRfOp.addr  := io.exInfo.rd
         }
+        is(alu_imm){
+            io.writeRfOp.data  := aluRes
+            io.writeRfOp.en    := true.B
+            io.writeRfOp.addr  := io.exInfo.rd
+        }
+        is(Load){       //need to write RF and read ram
+            io.writeRfOp.data  := DontCare  //EX STAGE DOESN'T HAS THE DATA YET
+            io.writeRfOp.en    := true.B
+            io.writeRfOp.addr  := io.exInfo.rd
+
+            io.loadOp.addr     := aluRes
+            io.loadOp.isLoad   := true.B
+        }
+        is(Store){
+            io.storeOp.addr    := aluRes
+            //Width, en and data have already be confirmed in id stage
+        }
 
     }
+    //to ID, data hazard
     io.exForwarding.data   := aluRes
     io.exForwarding.addr   := io.exInfo.rd
 }

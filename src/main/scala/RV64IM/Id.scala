@@ -19,9 +19,6 @@ class Id extends Module{
         val id2Rf         = Flipped(new id2Rf)      //READ INDEX
         val exInfo        = Flipped(new exInfo)
 
-        //debug 
-        val rs1           = Output(Bits(64.W))
-        val rs2           = Output(Bits(64.W))
     })
 
 
@@ -37,9 +34,12 @@ class Id extends Module{
     val rd       = inst(11,7)
     val rs1      = inst(19,15)
     val rs2      = inst(24,20)
+    val imm_I    = inst(31,20)      //range [0, 4095]
+    val imm_S    = Cat(inst(31,25), inst(11,7))
 
     val decRes   = ListLookup(inst,DecTable.defaultDec,DecTable.decMap)     //returns list(instType,opt)
     val instType = decRes(DecTable.TYPE)
+    val aluop    = decRes(DecTable.OPT)
 
     val rs1Val  = PriorityMux(Seq(
         (rs1 === 0.U,                    0.U),                   // reading x0 always gives 0
@@ -57,9 +57,10 @@ class Id extends Module{
         (true.B,                         regData2))              // from the register file
     )    
 
-//    dontTouch(rs1Val)
-//    dontTouch(rs2Val)
+    //default
+    io.exInfo.storeOp       := 0.U.asTypeOf(new storeOp)
 
+    //offer different op information according to the InstType
     switch(instType){
         is(InstType.BAD){
             oprand1         := 0.U 
@@ -71,18 +72,34 @@ class Id extends Module{
             oprand2         := rs2Val
             wreg            := true.B
         }
+        is(InstType.I){     //CALCULATE THE ADDRESS IN EX
+            oprand1         := rs1Val
+            oprand2         := imm_I
+            wreg            := true.B
+            //if load , like lb rd, imm(rs1),use rs1 and imm to calculate the address. rd is just like others
+        }
+        is(InstType.S){
+            //sb rs2, imm(rs1)
+            oprand1         := rs1Val
+            oprand2         := imm_S
+            wreg            := false.B
+            //store address is not yet known
+            io.exInfo.storeOp.data  :=  rs2Val
+            io.exInfo.storeOp.en    :=  true.B
+            io.exInfo.storeOp.Width :=  MuxLookup(aluop, 0.U, Seq(
+                SB  ->  0.U,    SH  ->  1.U,    SW  ->  2.U,//    SD  ->  3.U
+            ))
+        }
     }
 
     io.exInfo.oprand1   := oprand1
     io.exInfo.oprand2   := oprand2
     io.exInfo.rd        := rd
     io.exInfo.opcode    := inst(6,0)
-    io.exInfo.aluop     := decRes(DecTable.OPT)
+    io.exInfo.aluop     := aluop
     io.exInfo.wreg      := wreg
 
     io.id2Rf.ReadIdx1   := rs1
     io.id2Rf.ReadIdx2   := rs2
-    
-    io.rs1 := rs1Val
-    io.rs2 := rs2Val
+
 }

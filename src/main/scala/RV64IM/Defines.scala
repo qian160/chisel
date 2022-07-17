@@ -26,21 +26,22 @@ object OptCode {
     val DIVU = 16.U(5.W)
     val REM = 17.U(5.W)
     val REMU = 18.U(5.W)
-
+    //calculate the address
     val LW  = 24.U(5.W) // 11000
     val LH  = 26.U(5.W) // 11010
     val LHU = 27.U(5.W) // 11011
     val LB  = 28.U(5.W) // 11100
     val LBU = 29.U(5.W) // 11101
 
-    val SW = "b10100".U // 20
-    val SH = "b10101".U
-    val SB = "b10110".U
+    val SW = 20.U // 20
+    val SH = 21.U
+    val SB = 22.U
 
     //main instruction types, opcode. used to contorl the final result in ex stage
+    //need to be improved
     val alu_reg    = "b0110011".U
     val alu_imm    = "b0010011".U
-    val Imm        = "b0000011".U
+    val Load       = "b0000011".U
     val Store      = "b0100011".U
     val Branch     = "b1100011".U
 
@@ -132,6 +133,20 @@ object Insts { // idea from mini riscv
     def REM    = BitPat("b0000001??????????110?????0110011")
     def REMU   = BitPat("b0000001??????????111?????0110011")
 
+//RV64I
+    def ADDW   = BitPat("b0000000??????????000?????0111011")
+    def SUBW   = BitPat("b0100000??????????000?????0111011")
+    def SLLW   = BitPat("b0000000??????????001?????0111011")
+    def SRLW   = BitPat("b0000000??????????101?????0111011")
+    def SRAW   = BitPat("b0100000??????????101?????0111011")
+    def LWU    = BitPat("b?????????????????110?????0000011")
+    def LD     = BitPat("b?????????????????011?????0000011")
+    def SD     = BitPat("b?????????????????011?????0100011")
+
+    def ADDIW  = BitPat("b?????????????????000?????0011011")
+    def SLLIW  = BitPat("b0000000??????????001?????0011011")
+    def SRLIW  = BitPat("b0000000??????????101?????0011011")
+    def SRAIW  = BitPat("b0100000??????????101?????0011011")
 }
 
 object DecTable {
@@ -139,6 +154,17 @@ object DecTable {
     val defaultDec =   List(InstType.BAD, OptCode.ADD)
 
     val decMap = Array(     //type         option
+        Insts.ADD     ->  List(InstType.R, OptCode.ADD),
+        Insts.SUB     ->  List(InstType.R, OptCode.SUB),
+        Insts.SLL     ->  List(InstType.R, OptCode.SLL),
+        Insts.SLT     ->  List(InstType.R, OptCode.SLT),
+        Insts.SLTU    ->  List(InstType.R, OptCode.SLTU),
+        Insts.XOR     ->  List(InstType.R, OptCode.XOR),
+        Insts.SRL     ->  List(InstType.R, OptCode.SRL),
+        Insts.SRA     ->  List(InstType.R, OptCode.SRA),
+        Insts.OR      ->  List(InstType.R, OptCode.OR),
+        Insts.AND     ->  List(InstType.R, OptCode.AND),
+
         Insts.ADDI    ->  List(InstType.I, OptCode.ADD),
         Insts.SLTI    ->  List(InstType.I, OptCode.SLT),
         Insts.SLTIU   ->  List(InstType.I, OptCode.SLTU),
@@ -155,16 +181,9 @@ object DecTable {
         Insts.LBU     ->  List(InstType.I, OptCode.LBU),
         Insts.LHU     ->  List(InstType.I, OptCode.LHU),
 
-        Insts.ADD     ->  List(InstType.R, OptCode.ADD),
-        Insts.SUB     ->  List(InstType.R, OptCode.SUB),
-        Insts.SLL     ->  List(InstType.R, OptCode.SLL),
-        Insts.SLT     ->  List(InstType.R, OptCode.SLT),
-        Insts.SLTU    ->  List(InstType.R, OptCode.SLTU),
-        Insts.XOR     ->  List(InstType.R, OptCode.XOR),
-        Insts.SRL     ->  List(InstType.R, OptCode.SRL),
-        Insts.SRA     ->  List(InstType.R, OptCode.SRA),
-        Insts.OR      ->  List(InstType.R, OptCode.OR),
-        Insts.AND     ->  List(InstType.R, OptCode.AND),
+        Insts.SB      ->  List(InstType.S, OptCode.SB),
+        Insts.SH      ->  List(InstType.S, OptCode.SH),
+        Insts.SW      ->  List(InstType.S, OptCode.SW),
 
         Insts.MUL     ->  List(InstType.R, OptCode.MUL),
         Insts.MULH    ->  List(InstType.R, OptCode.MULH),
@@ -174,9 +193,6 @@ object DecTable {
         Insts.REM     ->  List(InstType.R, OptCode.REM),
         Insts.REMU    ->  List(InstType.R, OptCode.REMU),
 
-        Insts.SB      ->  List(InstType.S, OptCode.SB),
-        Insts.SH      ->  List(InstType.S, OptCode.SH),
-        Insts.SW      ->  List(InstType.S, OptCode.SW),
 /*
         Insts.BEQ     ->  List(InstType.B, BType.BEQ),
         Insts.BNE     ->  List(InstType.B, BType.BNE),
@@ -212,12 +228,15 @@ class Forwarding extends Bundle{
 }
 
 class exInfo extends Bundle{
+    //generated in ID stage
     val oprand1   = Input(Bits(64.W))
     val oprand2   = Input(Bits(64.W))
     val rd        = Input(Bits(5.W))     //reg destination
     val wreg      = Input(Bool())        //if this instruction will write the regfile
     val opcode    = Input(Bits(7.W))     //for further judgement
-    val aluop     = Input(Bits(5.W))     //inform the alu what to do 
+    val aluop     = Input(Bits(6.W))     //inform the alu what to do 
+
+    val storeOp   = Input(new storeOp)
 }
 
 class id2Rf extends Bundle{
@@ -234,6 +253,23 @@ class writeRfOp extends Bundle{
     val en       = Input(Bool())
     val data     = Input(Bits(64.W))
     val addr     = Input(Bits(5.W))
+}
+
+class storeOp extends Bundle{       //put to id stage?
+    val en       = Input(Bool())
+    val addr     = Input(Bits(64.W))
+    val data     = Input(Bits(64.W))
+    val Width    = Input(Bits(2.W))
+    //seems that we can't use 'width' as a name
+
+}
+
+class loadOp extends Bundle{
+    val isLoad   = Input(Bool())
+    val addr     = Input(Bits(64.W))
+    val Width    = Input(Bits(2.W))
+    //val signal   = Input(Bool())
+
 }
 
 /*

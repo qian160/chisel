@@ -16,58 +16,38 @@ object D{       //debug
     val purple = "\u001b[40;35m"
     val ed     = "\u001b[0m"
 
-    def risingedge(x: Bool) = x && !RegNext(x)
-}
-
-class simple extends Module{
-    val io = IO(new Bundle{})
-}
-
-class TesterSpec extends AnyFlatSpec with ChiselScalatestTester{
-    val Rnd = new Random()
     val Purple = "\u001b[40;35m[pass!]\u001b[0m"
     val Yellow = "\u001b[40;33m[pass!]\u001b[0m"
     val Blue   = "\u001b[40;34m[pass!]\u001b[0m"
     val Red    = "\u001b[40;31m[fail!]\u001b[0m"
     val Green  = "\u001b[40;32m[pass!]\u001b[0m"
+    def risingedge(x: Bool) = x && !RegNext(x)
+}
+
+class simple extends Module{
+    val io = IO(new Bundle{
+        val o = Output(Bits(32.W))
+    })
+    val ram = SyncReadMem(100,UInt(8.W))
+    ram(0)  := 0.U
+    ram(1)  := 1.U
+    ram(2)  := 2.U
+    ram(3)  := 3.U
+    io.o := Cat(ram(0),ram(1),ram(2),ram(3))
+    //io.o := DontCare
+}
+
+class TesterSpec extends AnyFlatSpec with ChiselScalatestTester{
+    val Rnd = new Random()
     println("\u001b[40;32mgenerate verilog code...\u001b[0m")
-    println(getVerilogString(new Mult))
-    /*
-    "test data hazard" should "$2 get 0x114514" in{
-        test(new Mult){dut => 
-        var success = 0.0
-        var fail    = 0.0
-        var cnt     = 0
-            for(i <- 0 until 10000000){
-                dut.io.a.poke((Rnd.nextLong()).abs.U)
-                dut.io.b.poke((Rnd.nextLong()).abs.U)
+    println(getVerilogString(new Top))
 
-                val v1 = dut.io.result.peek().toString
-                val v2 = dut.io.signed.peek().toString
-                val v3 = dut.io.unsigned.peek().toString
-                println(s" $v1 \n $v2 \n $v3 \n\n")
-                print(s"$cnt: ")
-                if(v1 == v2 || v1 == v3){
-                    println(Green)
-                    success = success + 1.0
-                }
-                else{
-                    println(Red)
-                    fail = fail + 1.0
-                }
-                cnt = cnt + 1
-            }
-            println("success rate: "+D.purple + "%"+success/100000.0 + D.ed)
-            println("failure times: " + fail)
+    "test" should "pass " in{
+        test(new simple){dut => 
+            val v = dut.io.o.peek()
+            println(s"$v")
         }
-
     }
-    */
-    /*
-        r1 = 114514
-        add 2 0 1
-        add 3 2 2
-    */
 }
 
 object TesterGen {

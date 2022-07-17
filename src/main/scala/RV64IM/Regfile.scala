@@ -13,13 +13,11 @@ class Regfile extends Module{
     })
     //val rf = SyncReadMem(32,UInt(64.W))
     val rf    = RegInit(VecInit(Seq.fill(31)(0.U(64.W))))
-    val latch = RegNext(io.writeRfOp.data)
     rf(0) := 0.U
-    rf(1) :=114514.U
 
     when(io.writeRfOp.en){     
         if(io.writeRfOp.addr!= 0.U)   
-            rf(io.writeRfOp.addr) := latch
+            rf(io.writeRfOp.addr) := io.writeRfOp.data
     }
     //read
     io.rf2Id.RegData1 := rf(io.id2Rf.ReadIdx1)
