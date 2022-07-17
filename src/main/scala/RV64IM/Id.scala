@@ -16,12 +16,13 @@ class Id extends Module{
         val memForwarding = Input(new Forwarding)
         val wbForwarding  = Input(new Forwarding)
 
-        val id2Rf         = Flipped(new id2Rf)      //READ INDEX
-        val exInfo        = Flipped(new exInfo)
+        val stall_req     = Output(Bool())
+        val id2Rf         = Output(new id2Rf)      //READ INDEX
+        val exInfo        = Output(new exInfo)
 
     })
 
-
+    io.stall_req    := false.B
     val oprand1  = Wire(Bits(64.W));    oprand1     := 0.U
     val oprand2  = Wire(Bits(64.W));    oprand2     := 0.U
     val wreg     = Wire(Bool());        wreg        := false.B
@@ -58,8 +59,14 @@ class Id extends Module{
     )    
 
     //default
-    io.exInfo.storeOp       := 0.U.asTypeOf(new storeOp)
-
+    io.exInfo   :=  0.U.asTypeOf(new exInfo)
+    when(io.exInfo.opcode === "b0000011".U){     //load
+        io.exInfo.loadOp.isLoad := true.B
+        //io.exInfo.loadOp.addr := ?   not known yet, let ex do this
+        io.exInfo.loadOp.Width  :=  MuxLookup(aluop,0.U,Seq(
+            LB  ->  0.U,    LH  ->  1.U,    LW  ->  2.U,    //LD  ->  3.U
+        ))
+    }
     //offer different op information according to the InstType
     switch(instType){
         is(InstType.BAD){

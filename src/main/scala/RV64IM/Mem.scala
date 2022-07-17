@@ -9,8 +9,8 @@ class Memory extends Module{
         val writeRfOp_i   = Input(new writeRfOp)
         val loadOp        = Input(new loadOp)
         val storeOp       = Input(new storeOp)
-        val memForwarding = Flipped(new Forwarding)
-        val writeRfOp_o   = Flipped(new writeRfOp)
+        val memForwarding = Output(new Forwarding)
+        val writeRfOp_o   = Output(new writeRfOp)
 
     })
 
@@ -20,6 +20,7 @@ class Memory extends Module{
     val laddr   = io.loadOp.addr
     //add alignment check later
     val loadVal  =   MuxLookup(io.loadOp.Width, 0.U, Seq(
+        //fixpoint: s and u extension
         0.U ->  ram(laddr),                         //LB
         1.U ->  Cat(ram(laddr), ram(laddr + 1.U)),  //LH
         2.U ->  Cat(ram(laddr), ram(laddr + 1.U),ram(laddr + 2.U), ram(laddr + 3.U)),  //Lw

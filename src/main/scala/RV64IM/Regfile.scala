@@ -5,11 +5,11 @@ import chisel3.util._
 
 class Regfile extends Module{
     val io = IO(new Bundle{
-        val id2Rf        = new id2Rf   //readIndex
+        val id2Rf        = Input(new id2Rf)   //readIndex
         //wb to rf
-        val writeRfOp    = new writeRfOp
+        val writeRfOp    = Input(new writeRfOp)
 
-        val rf2Id        = Flipped(new rf2Id)
+        val rf2Id        = Output(new rf2Id)
     })
     //val rf = SyncReadMem(32,UInt(64.W))
     val rf    = RegInit(VecInit(Seq.fill(31)(0.U(64.W))))

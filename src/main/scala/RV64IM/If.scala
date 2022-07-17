@@ -4,13 +4,14 @@ import chisel3.util._
 
 class Pc extends Module{
     val io = IO(new Bundle{
+        val stall = Input(Bool())
         val reset = Input(Bool())
         val pc    = Output(Bits(64.W))     //add more input ports in later design
     })
     val pc       = RegInit(0.U(64.W))   //dont need reset signal anymore.reginit will perform the reset job
     //pc    := Mux(pc + 4.U, ...)
-    pc          := pc + 4.U
-    io.pc       := pc
+    when(!io.stall){ pc := pc + 4.U}
+    io.pc   := pc
 
 }
 

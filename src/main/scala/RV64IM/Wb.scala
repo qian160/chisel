@@ -6,8 +6,8 @@ class Wb extends RawModule{
     val io = IO(new Bundle{
         val writeRfOp_i     = Input(new writeRfOp)
 
-        val wbForwarding    = Flipped(new Forwarding)
-        val writeRfOp_o     = Flipped(new writeRfOp)
+        val wbForwarding    = Output(new Forwarding)
+        val writeRfOp_o     = Output(new writeRfOp)
     })
 
     io.writeRfOp_o  := io.writeRfOp_i

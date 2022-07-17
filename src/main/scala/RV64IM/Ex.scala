@@ -7,16 +7,16 @@ class Ex extends RawModule{
     val io = IO(new Bundle{
         val exInfo         = Input(new exInfo())
 
-        val exForwarding   = Flipped(new Forwarding)
-        val writeRfOp      = Flipped(new writeRfOp)
-        val loadOp         = Flipped(new loadOp)
-        val storeOp        = Flipped(new storeOp)
+        val exForwarding   = Output(new Forwarding)
+        val writeRfOp      = Output(new writeRfOp)
+        val loadOp         = Output(new loadOp)
+        val storeOp        = Output(new storeOp)
     })
 
     val oprand1 =  io.exInfo.oprand1
     val oprand2 =  io.exInfo.oprand2
     io.storeOp  := io.exInfo.storeOp
-
+    io.loadOp   := io.exInfo.loadOp
     //ALU'S job, always produce one result
     val aluRes = MuxLookup(io.exInfo.aluop,0.U, Seq(
         ADD  -> (oprand1 + oprand2),
@@ -45,11 +45,7 @@ class Ex extends RawModule{
     //how do ex knows it's a load or store operation?
     //here we use the spare eencoding space in aluop
     //maybe try to improve this
-    io.loadOp.Width     := MuxLookup(io.exInfo.aluop, 0.U,Seq(
-        LB  ->  0.U,    LH  ->  1.U,    LW  ->  2.U//,  LD  ->  3.U
-    ))
     io.writeRfOp    := 0.U.asTypeOf(new writeRfOp)    
-    io.loadOp   := 0.U.asTypeOf(new loadOp)     //default
     //choose the result, can be improved
     switch(io.exInfo.opcode){
         is(alu_reg) {
@@ -68,7 +64,6 @@ class Ex extends RawModule{
             io.writeRfOp.addr  := io.exInfo.rd
 
             io.loadOp.addr     := aluRes
-            io.loadOp.isLoad   := true.B
         }
         is(Store){
             io.storeOp.addr    := aluRes

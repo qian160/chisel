@@ -9,9 +9,9 @@ import chisel3.util.experimental.loadMemoryFromFile
 
 class Top extends RawModule{
     val io = IO(new Bundle{
-        //debug
         val clk   = Input(Clock())
         val reset = Input(Bool())
+        //debug
         val o1 = Output(UInt(64.W))
         val o2 = Output(UInt(32.W))
         val o3 = Output(UInt(64.W))
@@ -30,7 +30,7 @@ class Top extends RawModule{
     val MEM         = withClockAndReset(io.clk,io.reset){Module(new Memory())}
     val MEM_WB      = withClockAndReset(io.clk,io.reset){Module(new Mem_Wb())}
     val WB          = withClockAndReset(io.clk,io.reset){Module(new Wb())}
-
+    val CTRL        = withClockAndReset(io.clk,io.reset){Module(new Ctrl)}
 
 //reset
     PC.io.reset         := io.reset
@@ -40,6 +40,12 @@ class Top extends RawModule{
     ID_EX.io.reset      := io.reset
     EX_MEM.io.reset     := io.reset
     MEM_WB.io.reset     := io.reset
+
+    PC.io.stall         := CTRL.io.stall(0)
+    IF_ID.io.stall      := CTRL.io.stall(1)
+    ID_EX.io.stall      := CTRL.io.stall(2)
+    EX_MEM.io.stall     := CTRL.io.stall(3)
+    MEM_WB.io.stall     := CTRL.io.stall(4)
 
     IF.io.pc_i          := PC.io.pc
     IF.io.inst_i        := INST_ROM.io.inst_o
@@ -74,6 +80,8 @@ class Top extends RawModule{
     ID.io.wbForwarding      <> WB.io.wbForwarding
     ID.io.memForwarding     <> MEM.io.memForwarding
     ID.io.exForwarding      <> EX.io.exForwarding
+
+    CTRL.io.id_req          := ID.io.stall_req
 
 //DEBUG
 /*
