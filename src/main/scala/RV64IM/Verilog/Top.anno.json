@@ -1,0 +1,16 @@
+[
+  {
+    "class":"firrtl.EmitCircuitAnnotation",
+    "emitter":"firrtl.VerilogEmitter"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxTargetDirAnno",
+    "targetDir":"Verilog"
+  },
+  {
+    "class":"firrtl.annotations.MemoryFileInlineAnnotation",
+    "target":"~Top|Inst_Rom>mem",
+    "filename":"/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Inst_Rom.data",
+    "hexOrBinary":"h"
+  }
+]

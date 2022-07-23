@@ -1,0 +1,29 @@
+
+test.o:     file format elf64-littleriscv
+
+
+Disassembly of section .text:
+
+0000000000000000 <_start>:
+   0:	01100093          	li	ra,17
+   4:	02200113          	li	sp,34
+   8:	00115863          	bge	sp,ra,18 <t1>
+   c:	02000063          	beqz	zero,2c <t2>
+  10:	00000113          	li	sp,0
+  14:	00000193          	li	gp,0
+
+0000000000000018 <t1>:
+  18:	00000093          	li	ra,0
+  1c:	00000013          	nop
+  20:	00000013          	nop
+  24:	00000013          	nop
+
+0000000000000028 <loop>:
+  28:	00000063          	beqz	zero,28 <loop>
+
+000000000000002c <t2>:
+  2c:	00000113          	li	sp,0
+
+0000000000000030 <loop2>:
+  30:	00001463          	bnez	zero,38 <loop2+0x8>
+  34:	fcdff06f          	j	0 <_start>

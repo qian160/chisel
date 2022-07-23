@@ -1,0 +1,32 @@
+[
+  {
+    "class":"firrtl.transforms.CombinationalPath",
+    "sink":"~Adder|Adder>io_out",
+    "sources":[
+      "~Adder|Adder>io_a",
+      "~Adder|Adder>io_b"
+    ]
+  },
+  {
+    "class":"logger.LogLevelAnnotation",
+    "globalLogLevel":{
+      
+    }
+  },
+  {
+    "class":"firrtl.options.TargetDirAnnotation",
+    "directory":"test_run_dir/Adder.TesterSimple1615976104"
+  },
+  {
+    "class":"firrtl.EmitCircuitAnnotation",
+    "emitter":"firrtl.LowFirrtlEmitter"
+  },
+  {
+    "class":"firrtl.transforms.BlackBoxTargetDirAnno",
+    "targetDir":"test_run_dir/Adder.TesterSimple1615976104"
+  },
+  {
+    "class":"firrtl.options.OutputAnnotationFileAnnotation",
+    "file":"Adder"
+  }
+]

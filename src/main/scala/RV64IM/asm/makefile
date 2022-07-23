@@ -5,7 +5,6 @@ compile:
 	@echo
 	@echo success!
 	@./as > ../Inst_Rom.data
-clean:
-	rm asm.txt
-	rm test.o
+	#rm asm.txt
+	@rm test.o
 

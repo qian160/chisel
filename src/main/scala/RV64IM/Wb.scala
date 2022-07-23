@@ -1,7 +1,7 @@
 package RV64
 
 import chisel3._
-
+//dest of this stage is the regfile
 class Wb extends RawModule{
     val io = IO(new Bundle{
         val writeRfOp_i     = Input(new writeRfOp)

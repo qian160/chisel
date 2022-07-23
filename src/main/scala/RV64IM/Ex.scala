@@ -5,7 +5,7 @@ import OptCode._
 
 class Ex extends RawModule{
     val io = IO(new Bundle{
-        val exInfo         = Input(new exInfo())
+        val decInfo        = Input(new decInfo())
 
         val exForwarding   = Output(new Forwarding)
         val writeRfOp      = Output(new writeRfOp)
@@ -13,12 +13,12 @@ class Ex extends RawModule{
         val storeOp        = Output(new storeOp)
     })
 
-    val oprand1 =  io.exInfo.oprand1
-    val oprand2 =  io.exInfo.oprand2
-    io.storeOp  := io.exInfo.storeOp
-    io.loadOp   := io.exInfo.loadOp
+    val oprand1 =  io.decInfo.oprand1
+    val oprand2 =  io.decInfo.oprand2
+    io.storeOp  := io.decInfo.storeOp
+    io.loadOp   := io.decInfo.loadOp
     //ALU'S job, always produce one result
-    val aluRes = MuxLookup(io.exInfo.aluop,0.U, Seq(
+    val aluRes = MuxLookup(io.decInfo.aluop, oprand1 + oprand2, Seq(
         ADD  -> (oprand1 + oprand2),
         SUB  -> (oprand1 - oprand2),
         SLT  -> Mux(oprand1.asSInt < oprand2.asSInt, 1.U, 0.U),
@@ -30,48 +30,33 @@ class Ex extends RawModule{
         SRL  -> (oprand1 >> oprand2(4,0)),
         SRA  -> (oprand1.asSInt >> oprand2(4,0)).asUInt,
 
-        //calculate the address
-        LB   -> (oprand1 + oprand2),
-        LH   -> (oprand1 + oprand2),
-        LW   -> (oprand1 + oprand2),
-        LBU  -> (oprand1 + oprand2),
-        LHU  -> (oprand1 + oprand2),
-        SB   -> (oprand1 + oprand2),
-        SH   -> (oprand1 + oprand2),
-        SW   -> (oprand1 + oprand2),
+        //the rest are about calculating the address, and the default opt is add. so not necessary to list them here
         )
     )
-    //load and general alu arith are treated similarily
-    //how do ex knows it's a load or store operation?
-    //here we use the spare eencoding space in aluop
-    //maybe try to improve this
-    io.writeRfOp    := 0.U.asTypeOf(new writeRfOp)    
-    //choose the result, can be improved
-    switch(io.exInfo.opcode){
-        is(alu_reg) {
-            io.writeRfOp.data  := aluRes
-            io.writeRfOp.en    := true.B
-            io.writeRfOp.addr  := io.exInfo.rd
-        }
-        is(alu_imm){
-            io.writeRfOp.data  := aluRes
-            io.writeRfOp.en    := true.B
-            io.writeRfOp.addr  := io.exInfo.rd
-        }
-        is(Load){       //need to write RF and read ram
-            io.writeRfOp.data  := DontCare  //EX STAGE DOESN'T HAS THE DATA YET
-            io.writeRfOp.en    := true.B
-            io.writeRfOp.addr  := io.exInfo.rd
 
+    io.writeRfOp    := 0.U.asTypeOf(new writeRfOp)    
+    //use InstType instead. Load is also I-type, but just assign aluRes to it and midify it in mem
+    switch(io.decInfo.InstType){
+        is(InstType.R) {
+            io.writeRfOp.data  := aluRes
+            io.writeRfOp.en    := true.B
+            io.writeRfOp.addr  := io.decInfo.rd
+        }
+        is(InstType.I){     
+            //we assign aluRes to load, it seems unreasonable, but this will be modified in mem stage
+            //for I-type arith insts, aluRes is exactly the result, but for load it's the load address
+            io.writeRfOp.data  := aluRes        //
+            io.writeRfOp.en    := true.B
+            io.writeRfOp.addr  := io.decInfo.rd
             io.loadOp.addr     := aluRes
         }
-        is(Store){
+        is(InstType.S){
             io.storeOp.addr    := aluRes
             //Width, en and data have already be confirmed in id stage
         }
 
     }
-    //to ID, data hazard
-    io.exForwarding.data   := aluRes
-    io.exForwarding.addr   := io.exInfo.rd
+    //disable bypass when load, because it's just an address and not a reg-oprand
+    io.exForwarding.data   := aluRes        //address?
+    io.exForwarding.addr   := Mux(io.decInfo.loadOp.isLoad, 0.U, io.decInfo.rd) 
 }

@@ -24,28 +24,43 @@ object D{       //debug
     def risingedge(x: Bool) = x && !RegNext(x)
 }
 
+class test extends Module{
+    val io = IO(new Bundle{
+        val addr = Input(Bits(4.W))
+        val data = Output(Bits(4.W))
+    })
+    val m = SyncReadMem(100, Bits(4.W))
+    m(0) := 1.U ;m(1) := 2.U ;m(2) := 3.U ;m(3) := 4.U 
+    m(4) := 5.U ;m(5) := 6.U ;m(6) := 7.U ;m(7) := 8.U 
+    io.data := m(io.addr)
+}
+
 class simple extends Module{
     val io = IO(new Bundle{
-        val o = Output(Bits(32.W))
+        val i = Input(Bits(4.W))
+        val o = Output(Bits(4.W))
     })
-    val ram = SyncReadMem(100,UInt(8.W))
-    ram(0)  := 0.U
-    ram(1)  := 1.U
-    ram(2)  := 2.U
-    ram(3)  := 3.U
-    io.o := Cat(ram(0),ram(1),ram(2),ram(3))
-    //io.o := DontCare
+    val test = Module(new test)
+    test.io.addr := io.i
+    io.o := test.io.data
+
 }
 
 class TesterSpec extends AnyFlatSpec with ChiselScalatestTester{
     val Rnd = new Random()
     println("\u001b[40;32mgenerate verilog code...\u001b[0m")
-    println(getVerilogString(new Top))
-
+    println(getVerilogString(new simple))
+    var cnt = 0
     "test" should "pass " in{
         test(new simple){dut => 
-            val v = dut.io.o.peek()
-            println(s"$v")
+            for( i <- 0 to 7){
+                val v = dut.io.o.peek()
+                dut.io.i.poke(i)
+                println(s"$cnt : $v")
+                dut.clock.step()
+                println(s"$cnt : $v")
+                cnt = cnt + 1
+            }
         }
     }
 }
