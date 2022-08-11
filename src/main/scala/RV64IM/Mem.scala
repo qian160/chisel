@@ -43,7 +43,6 @@ class Memory extends Module{
     val swidth     = io.storeOp.Width
     val legalStore = checkMem(swidth, saddr)
 
-    //bug: read after load. load's ex stage don't generate the wdata, so bypass may fail
     when(io.storeOp.en & legalStore){
         switch(io.storeOp.Width){
             is(0.U){
