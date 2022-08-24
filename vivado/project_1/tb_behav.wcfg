@@ -12,14 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="261133189fs"></ZoomEndTime>
+      <ZoomEndTime time="134000001fs"></ZoomEndTime>
       <Cursor1Time time="50000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="179"></NameColumnWidth>
-      <ValueColumnWidth column_width="229"></ValueColumnWidth>
+      <NameColumnWidth column_width="127"></NameColumnWidth>
+      <ValueColumnWidth column_width="142"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="15" />
+   <WVObjectSize size="18" />
    <wvobject type="logic" fp_name="/cpu_tb/CLOCK_50">
       <obj_property name="ElementShortName">CLOCK_50</obj_property>
       <obj_property name="ObjectShortName">CLOCK_50</obj_property>
@@ -36,11 +36,17 @@
       <obj_property name="label">IF</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject type="logic" fp_name="/cpu_tb/rv64/IF/io_flush">
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/IF/io_stall">
          <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="ElementShortName">io_flush</obj_property>
-         <obj_property name="ObjectShortName">io_flush</obj_property>
-         <obj_property name="label">flush</obj_property>
+         <obj_property name="ElementShortName">io_stall</obj_property>
+         <obj_property name="ObjectShortName">io_stall</obj_property>
+         <obj_property name="label">stall</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/IF/io_excep_happen">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_excep_happen</obj_property>
+         <obj_property name="ObjectShortName">io_excep_happen</obj_property>
+         <obj_property name="label">excep</obj_property>
       </wvobject>
       <wvobject type="logic" fp_name="/cpu_tb/rv64/IF/io_branchOp_taken">
          <obj_property name="DisplayName">label</obj_property>
@@ -54,11 +60,11 @@
          <obj_property name="ObjectShortName">io_branchOp_target[63:0]</obj_property>
          <obj_property name="label">target</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cpu_tb/rv64/IF/pc">
+      <wvobject type="array" fp_name="/cpu_tb/rv64/IF/io_excep_new_pc">
          <obj_property name="DisplayName">label</obj_property>
-         <obj_property name="ElementShortName">pc[63:0]</obj_property>
-         <obj_property name="ObjectShortName">pc[63:0]</obj_property>
-         <obj_property name="label">pc</obj_property>
+         <obj_property name="ElementShortName">io_excep_new_pc[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_excep_new_pc[63:0]</obj_property>
+         <obj_property name="label">excepPC</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/cpu_tb/rv64/IF/io_inst_o">
          <obj_property name="DisplayName">label</obj_property>
@@ -66,29 +72,264 @@
          <obj_property name="ObjectShortName">io_inst_o[31:0]</obj_property>
          <obj_property name="label">inst</obj_property>
       </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/IF/io_pc_o">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_pc_o[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_pc_o[63:0]</obj_property>
+         <obj_property name="label">PC</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group665">
       <obj_property name="label">IF/ID</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/IF_ID/io_stall">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_stall</obj_property>
+         <obj_property name="ObjectShortName">io_stall</obj_property>
+         <obj_property name="label">stall</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/IF_ID/io_flush">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_flush</obj_property>
+         <obj_property name="ObjectShortName">io_flush</obj_property>
+         <obj_property name="label">flush</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/IF_ID/io_pc_i">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_pc_i[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_pc_i[63:0]</obj_property>
+         <obj_property name="label">pc_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/IF_ID/io_inst_i">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_inst_i[31:0]</obj_property>
+         <obj_property name="ObjectShortName">io_inst_i[31:0]</obj_property>
+         <obj_property name="label">inst_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/IF_ID/io_pc_o">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_pc_o[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_pc_o[63:0]</obj_property>
+         <obj_property name="label">pc_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/IF_ID/io_inst_o">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_inst_o[31:0]</obj_property>
+         <obj_property name="ObjectShortName">io_inst_o[31:0]</obj_property>
+         <obj_property name="label">inst_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/IF_ID/inst">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">inst[31:0]</obj_property>
+         <obj_property name="ObjectShortName">inst[31:0]</obj_property>
+         <obj_property name="label">inst</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/IF_ID/pc">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">pc[63:0]</obj_property>
+         <obj_property name="ObjectShortName">pc[63:0]</obj_property>
+         <obj_property name="label">pc</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="logic" fp_name="/cpu_tb/CLOCK_50">
+      <obj_property name="ElementShortName">CLOCK_50</obj_property>
+      <obj_property name="ObjectShortName">CLOCK_50</obj_property>
    </wvobject>
    <wvobject type="group" fp_name="group642">
       <obj_property name="label">ID</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/ID/io_CSR_2_ID_data">
+         <obj_property name="ElementShortName">io_CSR_2_ID_data[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_CSR_2_ID_data[63:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/ID/io_CSR_2_ID_legalRead">
+         <obj_property name="ElementShortName">io_CSR_2_ID_legalRead</obj_property>
+         <obj_property name="ObjectShortName">io_CSR_2_ID_legalRead</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/ID/io_ID_2_CSR_addr">
+         <obj_property name="ElementShortName">io_ID_2_CSR_addr[11:0]</obj_property>
+         <obj_property name="ObjectShortName">io_ID_2_CSR_addr[11:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/ID/io_decInfo_InstType">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_decInfo_InstType[2:0]</obj_property>
+         <obj_property name="ObjectShortName">io_decInfo_InstType[2:0]</obj_property>
+         <obj_property name="label">InstType</obj_property>
+      </wvobject>
       <wvobject type="group" fp_name="group5611">
          <obj_property name="label">fwd</obj_property>
          <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject type="array" fp_name="/cpu_tb/rv64/ID/io_fwd_csr_wb_addr">
+            <obj_property name="ElementShortName">io_fwd_csr_wb_addr[11:0]</obj_property>
+            <obj_property name="ObjectShortName">io_fwd_csr_wb_addr[11:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/cpu_tb/rv64/ID/io_fwd_csr_wb_data">
+            <obj_property name="ElementShortName">io_fwd_csr_wb_data[63:0]</obj_property>
+            <obj_property name="ObjectShortName">io_fwd_csr_wb_data[63:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/cpu_tb/rv64/ID/io_fwd_csr_mem_addr">
+            <obj_property name="ElementShortName">io_fwd_csr_mem_addr[11:0]</obj_property>
+            <obj_property name="ObjectShortName">io_fwd_csr_mem_addr[11:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/cpu_tb/rv64/ID/io_fwd_csr_mem_data">
+            <obj_property name="ElementShortName">io_fwd_csr_mem_data[63:0]</obj_property>
+            <obj_property name="ObjectShortName">io_fwd_csr_mem_data[63:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/cpu_tb/rv64/ID/io_fwd_csr_ex_addr">
+            <obj_property name="ElementShortName">io_fwd_csr_ex_addr[11:0]</obj_property>
+            <obj_property name="ObjectShortName">io_fwd_csr_ex_addr[11:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/cpu_tb/rv64/ID/io_fwd_csr_ex_data">
+            <obj_property name="ElementShortName">io_fwd_csr_ex_data[63:0]</obj_property>
+            <obj_property name="ObjectShortName">io_fwd_csr_ex_data[63:0]</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/ID/rs1">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">rs1[4:0]</obj_property>
+         <obj_property name="ObjectShortName">rs1[4:0]</obj_property>
+         <obj_property name="label">rs1</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/ID/rs2">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">rs2[4:0]</obj_property>
+         <obj_property name="ObjectShortName">rs2[4:0]</obj_property>
+         <obj_property name="label">rs2 / Imm[4:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/ID/io_decInfo_rd">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_decInfo_rd[4:0]</obj_property>
+         <obj_property name="ObjectShortName">io_decInfo_rd[4:0]</obj_property>
+         <obj_property name="label">rd</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/ID/rs1Val">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">rs1Val[63:0]</obj_property>
+         <obj_property name="ObjectShortName">rs1Val[63:0]</obj_property>
+         <obj_property name="label">rs1Val</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/ID/rs2Val">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">rs2Val[63:0]</obj_property>
+         <obj_property name="ObjectShortName">rs2Val[63:0]</obj_property>
+         <obj_property name="label">rs2Val</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/ID/io_prev_is_load">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_prev_is_load</obj_property>
+         <obj_property name="ObjectShortName">io_prev_is_load</obj_property>
+         <obj_property name="label">prev is load</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/ID/io_prev_rd">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_prev_rd[4:0]</obj_property>
+         <obj_property name="ObjectShortName">io_prev_rd[4:0]</obj_property>
+         <obj_property name="label">prev_rd</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/ID/branch_target">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">branch_target[63:0]</obj_property>
+         <obj_property name="ObjectShortName">branch_target[63:0]</obj_property>
+         <obj_property name="label">Btarget</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/ID/io_exception_happen">
+         <obj_property name="ElementShortName">io_exception_happen</obj_property>
+         <obj_property name="ObjectShortName">io_exception_happen</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/ID/io_stall_req">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_stall_req</obj_property>
+         <obj_property name="ObjectShortName">io_stall_req</obj_property>
+         <obj_property name="label">STALL_REQ</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/ID/io_decInfo_oprand1">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_decInfo_oprand1[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_decInfo_oprand1[63:0]</obj_property>
+         <obj_property name="label">oprand1</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/ID/io_decInfo_oprand2">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_decInfo_oprand2[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_decInfo_oprand2[63:0]</obj_property>
+         <obj_property name="label">oprand2</obj_property>
       </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group753">
       <obj_property name="label">ID/EX</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject type="group" fp_name="group777">
       <obj_property name="label">EX</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/EX/io_decInfo_aluop">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_decInfo_aluop[4:0]</obj_property>
+         <obj_property name="ObjectShortName">io_decInfo_aluop[4:0]</obj_property>
+         <obj_property name="label">aluop</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/EX/aluRes">
+         <obj_property name="ElementShortName">aluRes[126:0]</obj_property>
+         <obj_property name="ObjectShortName">aluRes[126:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/EX/io_writeRfOp_en">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_writeRfOp_en</obj_property>
+         <obj_property name="ObjectShortName">io_writeRfOp_en</obj_property>
+         <obj_property name="label">wen</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/EX/io_writeRfOp_data">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_writeRfOp_data[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_writeRfOp_data[63:0]</obj_property>
+         <obj_property name="label">wdata</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/EX/io_writeRfOp_addr">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_writeRfOp_addr[4:0]</obj_property>
+         <obj_property name="ObjectShortName">io_writeRfOp_addr[4:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         <obj_property name="label">rd</obj_property>
+      </wvobject>
+      <wvobject fp_name="divider226" type="divider">
+         <obj_property name="label">DIV</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/EX/divRes">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">divRes[63:0]</obj_property>
+         <obj_property name="ObjectShortName">divRes[63:0]</obj_property>
+         <obj_property name="label">divRes</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/EX/io_divOP_start">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_divOP_start</obj_property>
+         <obj_property name="ObjectShortName">io_divOP_start</obj_property>
+         <obj_property name="label">start</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/EX/isDiv">
+         <obj_property name="ElementShortName">isDiv</obj_property>
+         <obj_property name="ObjectShortName">isDiv</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/EX/io_divOP_a">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_divOP_a[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_divOP_a[63:0]</obj_property>
+         <obj_property name="label">a</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/EX/io_stall_req">
+         <obj_property name="ElementShortName">io_stall_req</obj_property>
+         <obj_property name="ObjectShortName">io_stall_req</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/EX/io_exception_o_happen">
+         <obj_property name="ElementShortName">io_exception_o_happen</obj_property>
+         <obj_property name="ObjectShortName">io_exception_o_happen</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group2544">
       <obj_property name="label">EX/MEM</obj_property>
@@ -99,15 +340,109 @@
       <obj_property name="label">MEM</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/MEM/ram">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">ram[0:1023][7:0]</obj_property>
+         <obj_property name="ObjectShortName">ram[0:1023][7:0]</obj_property>
+         <obj_property name="label">ram</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/MEM/io_loadOp_Width">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_loadOp_Width[1:0]</obj_property>
+         <obj_property name="ObjectShortName">io_loadOp_Width[1:0]</obj_property>
+         <obj_property name="label">loadWidth</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/MEM/io_loadOp_addr">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_loadOp_addr[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_loadOp_addr[63:0]</obj_property>
+         <obj_property name="label">loadAddr</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/MEM/loadVal">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">loadVal[63:0]</obj_property>
+         <obj_property name="ObjectShortName">loadVal[63:0]</obj_property>
+         <obj_property name="label">loadVal</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/MEM/io_storeOp_en">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_storeOp_en</obj_property>
+         <obj_property name="ObjectShortName">io_storeOp_en</obj_property>
+         <obj_property name="label">isStore</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/MEM/io_storeOp_addr">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_storeOp_addr[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_storeOp_addr[63:0]</obj_property>
+         <obj_property name="label">saddr</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/MEM/io_storeOp_data">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_storeOp_data[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_storeOp_data[63:0]</obj_property>
+         <obj_property name="label">sdata</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/MEM/io_storeOp_Width">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_storeOp_Width[1:0]</obj_property>
+         <obj_property name="ObjectShortName">io_storeOp_Width[1:0]</obj_property>
+         <obj_property name="label">swidth</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/MEM/io_writeRfOp_o_en">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_writeRfOp_o_en</obj_property>
+         <obj_property name="ObjectShortName">io_writeRfOp_o_en</obj_property>
+         <obj_property name="label">rf_en</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/MEM/io_writeRfOp_o_data">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_writeRfOp_o_data[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_writeRfOp_o_data[63:0]</obj_property>
+         <obj_property name="label">rf_data</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/MEM/io_writeRfOp_o_addr">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_writeRfOp_o_addr[4:0]</obj_property>
+         <obj_property name="ObjectShortName">io_writeRfOp_o_addr[4:0]</obj_property>
+         <obj_property name="label">rf_addr</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/MEM/io_exception_o_happen">
+         <obj_property name="ElementShortName">io_exception_o_happen</obj_property>
+         <obj_property name="ObjectShortName">io_exception_o_happen</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group2546">
       <obj_property name="label">MEM/WB</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject type="group" fp_name="group2547">
       <obj_property name="label">WB</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/WB/io_exception_o_happen">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_exception_o_happen</obj_property>
+         <obj_property name="ObjectShortName">io_exception_o_happen</obj_property>
+         <obj_property name="label">happen</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/WB/io_exception_o_cause">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_exception_o_cause[4:0]</obj_property>
+         <obj_property name="ObjectShortName">io_exception_o_cause[4:0]</obj_property>
+         <obj_property name="label">cause</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/WB/io_exception_o_pc">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_exception_o_pc[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_exception_o_pc[63:0]</obj_property>
+         <obj_property name="label">epc</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/WB/io_exception_o_xtval">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_exception_o_xtval[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_exception_o_xtval[63:0]</obj_property>
+         <obj_property name="label">xtval</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group815">
       <obj_property name="label">REGFILE</obj_property>
@@ -146,5 +481,166 @@
       <obj_property name="label">CTRL</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/CTRL/io_excep">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_excep</obj_property>
+         <obj_property name="ObjectShortName">io_excep</obj_property>
+         <obj_property name="label">excep</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/CTRL/io_id_stall_req">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_id_stall_req</obj_property>
+         <obj_property name="ObjectShortName">io_id_stall_req</obj_property>
+         <obj_property name="label">id_stall</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/CTRL/io_id_flush_req">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_id_flush_req</obj_property>
+         <obj_property name="ObjectShortName">io_id_flush_req</obj_property>
+         <obj_property name="label">id_flush</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/CTRL/io_ex_stall_req">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_ex_stall_req</obj_property>
+         <obj_property name="ObjectShortName">io_ex_stall_req</obj_property>
+         <obj_property name="label">ex_stall</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/CTRL/io_stall">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_stall[4:0]</obj_property>
+         <obj_property name="ObjectShortName">io_stall[4:0]</obj_property>
+         <obj_property name="label">stall</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/CTRL/io_flush">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_flush[4:0]</obj_property>
+         <obj_property name="ObjectShortName">io_flush[4:0]</obj_property>
+         <obj_property name="label">flush</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group217">
+      <obj_property name="label">DIV</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/DIV/clock">
+         <obj_property name="ElementShortName">clock</obj_property>
+         <obj_property name="ObjectShortName">clock</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/DIV/io_finish">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_finish</obj_property>
+         <obj_property name="ObjectShortName">io_finish</obj_property>
+         <obj_property name="label">finish</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/DIV/io_a">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_a[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_a[63:0]</obj_property>
+         <obj_property name="label">a</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/DIV/io_b">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_b[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_b[63:0]</obj_property>
+         <obj_property name="label">b</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/DIV/io_start">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_start</obj_property>
+         <obj_property name="ObjectShortName">io_start</obj_property>
+         <obj_property name="label">start</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/DIV/io_quo">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_quo[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_quo[63:0]</obj_property>
+         <obj_property name="label">quo</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/DIV/io_rem">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">io_rem[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_rem[63:0]</obj_property>
+         <obj_property name="label">rem</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/DIV/cnt">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">cnt[5:0]</obj_property>
+         <obj_property name="ObjectShortName">cnt[5:0]</obj_property>
+         <obj_property name="label">cnt</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/DIV/pos_quo">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">pos_quo[63:0]</obj_property>
+         <obj_property name="ObjectShortName">pos_quo[63:0]</obj_property>
+         <obj_property name="label">pos_quo</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/DIV/neg_quo">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">neg_quo[63:0]</obj_property>
+         <obj_property name="ObjectShortName">neg_quo[63:0]</obj_property>
+         <obj_property name="label">neg_quo</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/DIV/clz">
+         <obj_property name="ElementShortName">clz[5:0]</obj_property>
+         <obj_property name="ObjectShortName">clz[5:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/DIV/PA">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">PA[128:0]</obj_property>
+         <obj_property name="ObjectShortName">PA[128:0]</obj_property>
+         <obj_property name="label">PA</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/DIV/P">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">P[64:0]</obj_property>
+         <obj_property name="ObjectShortName">P[64:0]</obj_property>
+         <obj_property name="label">P</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group3857">
+      <obj_property name="label">CSR</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/CSR/priv">
+         <obj_property name="ElementShortName">priv[1:0]</obj_property>
+         <obj_property name="ObjectShortName">priv[1:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/CSR/nextPriv">
+         <obj_property name="ElementShortName">nextPriv[1:0]</obj_property>
+         <obj_property name="ObjectShortName">nextPriv[1:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/CSR/csr_mtvec_r_data">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">csr_mtvec_r_data[63:0]</obj_property>
+         <obj_property name="ObjectShortName">csr_mtvec_r_data[63:0]</obj_property>
+         <obj_property name="label">mtvec</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/CSR/csr_stvec_r_data">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">csr_stvec_r_data[63:0]</obj_property>
+         <obj_property name="ObjectShortName">csr_stvec_r_data[63:0]</obj_property>
+         <obj_property name="label">stvec</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/CSR/csr_utvec_r_data">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">csr_utvec_r_data[63:0]</obj_property>
+         <obj_property name="ObjectShortName">csr_utvec_r_data[63:0]</obj_property>
+         <obj_property name="label">utvec</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cpu_tb/rv64/CSR/io_exception_happen">
+         <obj_property name="ElementShortName">io_exception_happen</obj_property>
+         <obj_property name="ObjectShortName">io_exception_happen</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/CSR/io_exception_cause">
+         <obj_property name="ElementShortName">io_exception_cause[4:0]</obj_property>
+         <obj_property name="ObjectShortName">io_exception_cause[4:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/CSR/io_exception_pc">
+         <obj_property name="ElementShortName">io_exception_pc[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_exception_pc[63:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cpu_tb/rv64/CSR/io_exception_xtval">
+         <obj_property name="ElementShortName">io_exception_xtval[63:0]</obj_property>
+         <obj_property name="ObjectShortName">io_exception_xtval[63:0]</obj_property>
+      </wvobject>
    </wvobject>
 </wave_config>

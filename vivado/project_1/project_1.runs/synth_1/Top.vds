@@ -1,0 +1,1289 @@
+#-----------------------------------------------------------
+# Vivado v2018.2 (64-bit)
+# SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
+# IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
+# Start of session at: Sat Aug 20 17:28:35 2022
+# Process ID: 261908
+# Current directory: /home/s081/Downloads/chisel-template/vivado/project_1/project_1.runs/synth_1
+# Command line: vivado -log Top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top.tcl
+# Log file: /home/s081/Downloads/chisel-template/vivado/project_1/project_1.runs/synth_1/Top.vds
+# Journal file: /home/s081/Downloads/chisel-template/vivado/project_1/project_1.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source Top.tcl -notrace
+Command: synth_design -top Top -part xc7a200tfbg676-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a200t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a200t'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 261937 
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:09 ; elapsed = 00:00:12 . Memory (MB): peak = 1282.020 ; gain = 89.918 ; free physical = 132 ; free virtual = 1118
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'Top' [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:3676]
+INFO: [Synth 8-6157] synthesizing module 'If' [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:1]
+
+Warning: Trying to implement RAM in registers. Block RAM or DRAM implementation is not possible for one or more of the following reasons :
+	1: Unable to determine number of words or word size in RAM. 
+	2: No valid read/write found for RAM. 
+RAM dissolved into registers
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+WARNING: [Synth 8-3848] Net inst_rom in module/entity If does not have driver. [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:18]
+INFO: [Common 17-14] Message 'Synth 8-3848' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-6155] done synthesizing module 'If' (1#1) [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:1]
+INFO: [Synth 8-6157] synthesizing module 'CSR' [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:101]
+INFO: [Synth 8-6155] done synthesizing module 'CSR' (2#1) [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:101]
+INFO: [Synth 8-6157] synthesizing module 'Regfile' [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:555]
+INFO: [Synth 8-6155] done synthesizing module 'Regfile' (3#1) [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:555]
+INFO: [Synth 8-6157] synthesizing module 'If_Id' [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:1019]
+INFO: [Synth 8-6155] done synthesizing module 'If_Id' (4#1) [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:1019]
+INFO: [Synth 8-6157] synthesizing module 'Id' [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:1097]
+INFO: [Synth 8-6155] done synthesizing module 'Id' (5#1) [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:1097]
+INFO: [Synth 8-6157] synthesizing module 'Id_Ex' [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:1499]
+INFO: [Synth 8-6155] done synthesizing module 'Id_Ex' (6#1) [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:1499]
+INFO: [Synth 8-6157] synthesizing module 'Ex' [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:1769]
+INFO: [Synth 8-6155] done synthesizing module 'Ex' (7#1) [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:1769]
+INFO: [Synth 8-6157] synthesizing module 'Ex_Mem' [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:1916]
+INFO: [Synth 8-6155] done synthesizing module 'Ex_Mem' (8#1) [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:1916]
+INFO: [Synth 8-6157] synthesizing module 'MEM' [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:2186]
+
+Warning: Trying to implement RAM in registers. Block RAM or DRAM implementation is not possible for one or more of the following reasons :
+	1: Invalid write to RAM. 
+	2: Unable to determine number of words or word size in RAM. 
+	3: No valid read/write found for RAM. 
+RAM dissolved into registers
+
+Warning: Trying to implement RAM in registers. Block RAM or DRAM implementation is not possible for one or more of the following reasons :
+	1: RAM has multiple writes via different ports in same process. If RAM inferencing intended, write to one port per process. 
+	2: Unable to determine number of words or word size in RAM. 
+	3: No valid read/write found for RAM. 
+RAM dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'ram_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: RAM has multiple writes via different ports in same process. If RAM inferencing intended, write to one port per process. 
+	2: Unable to determine number of words or word size in RAM. 
+	3: No valid read/write found for RAM. 
+RAM "ram_reg" dissolved into registers
+INFO: [Synth 8-6155] done synthesizing module 'MEM' (9#1) [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:2186]
+INFO: [Synth 8-6157] synthesizing module 'Mem_Wb' [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:2501]
+INFO: [Synth 8-6155] done synthesizing module 'Mem_Wb' (10#1) [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:2501]
+INFO: [Synth 8-6157] synthesizing module 'Wb' [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:2675]
+INFO: [Synth 8-6155] done synthesizing module 'Wb' (11#1) [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:2675]
+INFO: [Synth 8-6157] synthesizing module 'Ctrl' [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:2714]
+INFO: [Synth 8-6155] done synthesizing module 'Ctrl' (12#1) [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:2714]
+INFO: [Synth 8-6157] synthesizing module 'Div' [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:2728]
+INFO: [Synth 8-6155] done synthesizing module 'Div' (13#1) [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:2728]
+INFO: [Synth 8-6155] done synthesizing module 'Top' (14#1) [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:3676]
+WARNING: [Synth 8-3917] design Top has port io_o3[63] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[62] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[61] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[60] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[59] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[58] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[57] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[56] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[55] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[54] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[53] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[52] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[51] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[50] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[49] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[48] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[47] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[46] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[45] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[44] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[43] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[42] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[41] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[40] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[39] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[38] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[37] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[36] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[35] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[34] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[33] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[32] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[31] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[30] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[29] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[28] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[27] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[26] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[25] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[24] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[23] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[22] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[21] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[20] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[19] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[18] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[17] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[16] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[15] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[14] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[13] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[12] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[11] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[10] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[9] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[8] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[7] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[6] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[5] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[4] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[3] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[2] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[1] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o3[0] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[63] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[62] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[61] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[60] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[59] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[58] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[57] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[56] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[55] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[54] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[53] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[52] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[51] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[50] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[49] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[48] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[47] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[46] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[45] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[44] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[43] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[42] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[41] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[40] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[39] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[38] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[37] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[36] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[35] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[34] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[33] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[32] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[31] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[30] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[29] driven by constant 0
+WARNING: [Synth 8-3917] design Top has port io_o4[28] driven by constant 0
+INFO: [Common 17-14] Message 'Synth 8-3917' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[63]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[62]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[61]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[60]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[59]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[58]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[57]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[56]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[55]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[54]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[53]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[52]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[51]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[50]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[49]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[48]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[47]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[46]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[45]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[44]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[43]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[42]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[41]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[40]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[39]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[38]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[37]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[36]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[35]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[34]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[33]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[32]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[31]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[30]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[29]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[28]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[27]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[26]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[25]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[24]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[23]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[22]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[21]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[20]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[19]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[18]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[17]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[16]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[15]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[14]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[13]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[12]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[11]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_loadOp_addr[10]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[63]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[62]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[61]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[60]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[59]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[58]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[57]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[56]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[55]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[54]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[53]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[52]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[51]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[50]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[49]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[48]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[47]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[46]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[45]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[44]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[43]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[42]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[41]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[40]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[39]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[38]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[37]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[36]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[35]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[34]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[33]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[32]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[31]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[30]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[29]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[28]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[27]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[26]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[25]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[24]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[23]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[22]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[21]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[20]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[19]
+WARNING: [Synth 8-3331] design MEM has unconnected port io_storeOp_addr[18]
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:56 ; elapsed = 00:01:13 . Memory (MB): peak = 1643.527 ; gain = 451.426 ; free physical = 1608 ; free virtual = 2497
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:01:04 ; elapsed = 00:01:22 . Memory (MB): peak = 1643.527 ; gain = 451.426 ; free physical = 1654 ; free virtual = 2542
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a200tfbg676-1
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7a200tfbg676-1
+Finished Loading Part and Timing Information : Time (s): cpu = 00:01:04 ; elapsed = 00:01:22 . Memory (MB): peak = 1651.531 ; gain = 459.430 ; free physical = 1654 ; free virtual = 2542
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5546] ROM "csr_reg[0]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[1]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[2]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[3]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[4]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[6]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[7]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[8]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[9]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[10]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[11]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[12]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[13]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[14]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[15]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[16]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[17]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[18]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[19]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[20]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[21]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[22]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[23]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[24]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[25]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[26]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[27]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[28]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[29]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[30]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[31]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[32]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[33]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[34]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[35]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[36]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[37]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[38]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[39]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[40]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[41]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[42]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[43]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[44]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[45]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[46]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[47]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[48]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[49]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[50]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[51]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[52]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[53]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[54]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[55]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[56]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[57]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[58]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[59]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[60]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[61]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[62]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[63]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[64]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[68]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[69]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[70]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[71]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[72]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[73]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[74]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[75]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[76]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[77]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[78]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[79]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[80]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[81]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[82]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[83]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[84]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[85]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[86]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[87]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[88]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[89]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[90]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[91]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[92]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[93]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[94]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[95]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[96]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[97]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[98]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[99]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[100]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[101]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[102]" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "csr_reg[103]" won't be mapped to RAM because it is too sparse
+INFO: [Common 17-14] Message 'Synth 8-5546' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-5544] ROM "mstatus_MPP" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "mstatus_SPP" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "mstatus_MPP" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "mstatus_SPP" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "_nextPriv_T_23" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "priv" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5545] ROM "_io_exception_happen_T_1" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5544] ROM "_GEN_84" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5545] ROM "_io_exception_happen_T_1" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5544] ROM "_GEN_84" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:1843]
+INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 16 [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:1822]
+INFO: [Synth 8-5545] ROM "state" won't be mapped to RAM because address size (64) is larger than maximum supported(25)
+INFO: [Synth 8-5544] ROM "_GEN_816" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "_GEN_840" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5545] ROM "state" won't be mapped to RAM because address size (64) is larger than maximum supported(25)
+INFO: [Synth 8-5544] ROM "_GEN_816" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "_GEN_840" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "_qSel_T" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:12:46 ; elapsed = 00:12:36 . Memory (MB): peak = 2068.688 ; gain = 876.586 ; free physical = 1018 ; free virtual = 2107
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+--------------+------------+----------+
+|      |RTL Partition |Replication |Instances |
++------+--------------+------------+----------+
+|1     |muxpart       |           1|    131040|
+|2     |If__GB1       |           1|       487|
+|3     |muxpart__1030 |           1|     65472|
+|4     |CSR__GB1      |           1|       451|
+|5     |CSR__GB2      |           1|     11840|
+|6     |CSR__GB3      |           1|     20394|
+|7     |CSR__GB4      |           1|     23168|
+|8     |CSR__GB5      |           1|     33982|
+|9     |MEM__GB0      |           1|     36176|
+|10    |MEM__GB1      |           1|     25591|
+|11    |MEM__GB2      |           1|     19536|
+|12    |MEM__GB3      |           1|     15946|
+|13    |MEM__GB4      |           1|     36962|
+|14    |MEM__GB5      |           1|     25022|
+|15    |MEM__GB6      |           1|     37063|
+|16    |MEM__GB7      |           1|     37053|
+|17    |MEM__GB8      |           1|     33534|
+|18    |MEM__GB9      |           1|     16368|
+|19    |MEM__GB10     |           1|     16368|
+|20    |Top__GC0      |           1|     32304|
++------+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input    129 Bit       Adders := 4     
+	   4 Input    128 Bit       Adders := 1     
+	   2 Input     65 Bit       Adders := 1     
+	   2 Input     64 Bit       Adders := 6     
+	   3 Input     64 Bit       Adders := 3     
+	   2 Input     62 Bit       Adders := 1     
+	   3 Input     32 Bit       Adders := 1     
+	   2 Input     32 Bit       Adders := 1     
+	   2 Input     10 Bit       Adders := 1     
+	   2 Input      6 Bit       Adders := 1     
+	   3 Input      6 Bit       Adders := 1     
+	   2 Input      4 Bit       Adders := 1     
++---XORs : 
+	   2 Input     64 Bit         XORs := 1     
++---Registers : 
+	              129 Bit    Registers := 1     
+	               64 Bit    Registers := 1076  
+	               32 Bit    Registers := 1     
+	               12 Bit    Registers := 3     
+	                8 Bit    Registers := 1024  
+	                6 Bit    Registers := 1     
+	                5 Bit    Registers := 7     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 7     
+	                1 Bit    Registers := 16    
++---Multipliers : 
+	                32x32  Multipliers := 1     
++---Muxes : 
+	   2 Input   8192 Bit        Muxes := 3     
+	   7 Input    131 Bit        Muxes := 1     
+	   2 Input    129 Bit        Muxes := 4     
+	   6 Input    129 Bit        Muxes := 1     
+	   2 Input     65 Bit        Muxes := 1     
+	   2 Input     64 Bit        Muxes := 67    
+	   4 Input     64 Bit        Muxes := 5     
+	   9 Input     64 Bit        Muxes := 1     
+	   7 Input     64 Bit        Muxes := 1     
+	   8 Input     64 Bit        Muxes := 1     
+	  16 Input     64 Bit        Muxes := 1     
+	   5 Input     64 Bit        Muxes := 4     
+	   6 Input     64 Bit        Muxes := 1     
+	   3 Input     64 Bit        Muxes := 1     
+	   2 Input     32 Bit        Muxes := 2     
+	   2 Input     12 Bit        Muxes := 2     
+	   8 Input     12 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 5635  
+	   3 Input      8 Bit        Muxes := 414   
+	   2 Input      6 Bit        Muxes := 3     
+	   5 Input      6 Bit        Muxes := 1     
+	  63 Input      6 Bit        Muxes := 1     
+	  58 Input      5 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 5     
+	   8 Input      5 Bit        Muxes := 1     
+	   6 Input      5 Bit        Muxes := 1     
+	  10 Input      4 Bit        Muxes := 1     
+	  17 Input      4 Bit        Muxes := 1     
+	  63 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 1     
+	   4 Input      3 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 10    
+	   3 Input      2 Bit        Muxes := 29    
+	   4 Input      2 Bit        Muxes := 3     
+	   6 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1070  
+	   3 Input      1 Bit        Muxes := 2     
+	   4 Input      1 Bit        Muxes := 5     
+	   6 Input      1 Bit        Muxes := 1     
+	   8 Input      1 Bit        Muxes := 1     
+	   5 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module If 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     64 Bit       Adders := 1     
++---Registers : 
+	               64 Bit    Registers := 2     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     64 Bit        Muxes := 2     
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 2     
+Module CSR 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     62 Bit       Adders := 1     
++---Registers : 
+	               64 Bit    Registers := 1023  
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   4 Input     64 Bit        Muxes := 1     
+	   2 Input     64 Bit        Muxes := 26    
+	   9 Input     64 Bit        Muxes := 1     
+	  10 Input      4 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 1027  
+	   3 Input      1 Bit        Muxes := 1     
+Module MEM 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     10 Bit       Adders := 1     
++---Registers : 
+	                8 Bit    Registers := 1024  
++---Muxes : 
+	   2 Input   8192 Bit        Muxes := 3     
+	   2 Input     64 Bit        Muxes := 6     
+	   4 Input     64 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 5635  
+	   3 Input      8 Bit        Muxes := 414   
+	   3 Input      2 Bit        Muxes := 28    
+	   2 Input      1 Bit        Muxes := 2     
+	   4 Input      1 Bit        Muxes := 2     
+Module Regfile 
+Detailed RTL Component Info : 
++---Registers : 
+	               64 Bit    Registers := 31    
++---Muxes : 
+	   2 Input     64 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 30    
+Module If_Id 
+Detailed RTL Component Info : 
++---Registers : 
+	               64 Bit    Registers := 1     
+	               32 Bit    Registers := 1     
+Module Id 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     64 Bit       Adders := 3     
++---Muxes : 
+	   2 Input     64 Bit        Muxes := 18    
+	   4 Input     64 Bit        Muxes := 2     
+	   7 Input     64 Bit        Muxes := 1     
+	   8 Input     64 Bit        Muxes := 1     
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input     12 Bit        Muxes := 2     
+	   8 Input     12 Bit        Muxes := 1     
+	  58 Input      5 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 2     
+	   8 Input      5 Bit        Muxes := 1     
+	  63 Input      3 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 7     
+	   4 Input      2 Bit        Muxes := 2     
+	   6 Input      1 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 4     
+	   4 Input      1 Bit        Muxes := 2     
+	   8 Input      1 Bit        Muxes := 1     
+Module Id_Ex 
+Detailed RTL Component Info : 
++---Registers : 
+	               64 Bit    Registers := 6     
+	               12 Bit    Registers := 1     
+	                5 Bit    Registers := 3     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 5     
+Module Ex 
+Detailed RTL Component Info : 
++---Adders : 
+	   4 Input    128 Bit       Adders := 1     
+	   3 Input     64 Bit       Adders := 1     
+	   3 Input     32 Bit       Adders := 1     
+	   2 Input     32 Bit       Adders := 1     
++---XORs : 
+	   2 Input     64 Bit         XORs := 1     
++---Multipliers : 
+	                32x32  Multipliers := 1     
++---Muxes : 
+	   2 Input     64 Bit        Muxes := 8     
+	  16 Input     64 Bit        Muxes := 1     
+	   5 Input     64 Bit        Muxes := 1     
+	   6 Input     64 Bit        Muxes := 1     
+	   4 Input     64 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 2     
+	   6 Input      5 Bit        Muxes := 1     
+	  17 Input      4 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 2     
+Module Ex_Mem 
+Detailed RTL Component Info : 
++---Registers : 
+	               64 Bit    Registers := 7     
+	               12 Bit    Registers := 1     
+	                5 Bit    Registers := 2     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 6     
+Module Mem_Wb 
+Detailed RTL Component Info : 
++---Registers : 
+	               64 Bit    Registers := 4     
+	               12 Bit    Registers := 1     
+	                5 Bit    Registers := 2     
+	                1 Bit    Registers := 3     
+Module Ctrl 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      5 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 1     
+Module Div 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input    129 Bit       Adders := 4     
+	   2 Input     65 Bit       Adders := 1     
+	   2 Input     64 Bit       Adders := 2     
+	   3 Input     64 Bit       Adders := 2     
+	   2 Input      6 Bit       Adders := 1     
+	   3 Input      6 Bit       Adders := 1     
+	   2 Input      4 Bit       Adders := 1     
++---Registers : 
+	              129 Bit    Registers := 1     
+	               64 Bit    Registers := 2     
+	                6 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
++---Muxes : 
+	   7 Input    131 Bit        Muxes := 1     
+	   2 Input    129 Bit        Muxes := 4     
+	   6 Input    129 Bit        Muxes := 1     
+	   2 Input     65 Bit        Muxes := 1     
+	   5 Input     64 Bit        Muxes := 3     
+	   2 Input     64 Bit        Muxes := 5     
+	   3 Input     64 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 3     
+	   5 Input      6 Bit        Muxes := 1     
+	  63 Input      6 Bit        Muxes := 1     
+	   4 Input      3 Bit        Muxes := 1     
+	   3 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 1     
+	   6 Input      2 Bit        Muxes := 1     
+	   5 Input      1 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 3     
+	   4 Input      1 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 740 (col length:100)
+BRAMs: 730 (col length: RAMB18 100 RAMB36 50)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5580] Multithreading enabled for synth_design using a maximum of 4 processes.
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][0]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][1]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][2]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][3]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][4]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][5]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][6]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][7]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][8]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][9]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][10]' (FD) to 'CSRi_3/csr_reg[5][11]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][11]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][12]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][13]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][14]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][15]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][16]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][17]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][18]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][19]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][20]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][21]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][22]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][23]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][24]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][25]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][26]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][27]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][28]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][29]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][30]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][31]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][32]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][33]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][34]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][35]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][36]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][37]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][38]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][39]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][40]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][41]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][42]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][43]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][44]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][45]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][46]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][47]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][48]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][49]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][50]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][51]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][52]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][53]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][54]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][55]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][56]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][57]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][58]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][59]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][60]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][61]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][62]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[261][63]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][0]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][1]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][2]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][3]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][4]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][5]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][6]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][7]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][8]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][9]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][10]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][11]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][12]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][13]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][14]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][15]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][16]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][17]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][18]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][19]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][20]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][21]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][22]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][23]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][24]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][25]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][26]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][27]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][28]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][29]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][30]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][31]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][32]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][33]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][34]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Synth 8-3886] merging instance 'CSRi_3/csr_reg[773][35]' (FD) to 'CSRi_3/csr_reg[773][63]'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\csr_reg[5][11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\csr_reg[5][63] )
+INFO: [Common 17-14] Message 'Synth 8-5546' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-5545] ROM "_io_exception_happen_T_1" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v:1834]
+DSP Report: Generating DSP _aluRes_T_46, operation Mode is: A*B.
+DSP Report: operator _aluRes_T_46 is absorbed into DSP _aluRes_T_46.
+DSP Report: operator _aluRes_T_46 is absorbed into DSP _aluRes_T_46.
+DSP Report: Generating DSP _aluRes_T_46, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator _aluRes_T_46 is absorbed into DSP _aluRes_T_46.
+DSP Report: operator _aluRes_T_46 is absorbed into DSP _aluRes_T_46.
+DSP Report: Generating DSP _aluRes_T_46, operation Mode is: A*B.
+DSP Report: operator _aluRes_T_46 is absorbed into DSP _aluRes_T_46.
+DSP Report: operator _aluRes_T_46 is absorbed into DSP _aluRes_T_46.
+DSP Report: Generating DSP _aluRes_T_46, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator _aluRes_T_46 is absorbed into DSP _aluRes_T_46.
+DSP Report: operator _aluRes_T_46 is absorbed into DSP _aluRes_T_46.
+DSP Report: Generating DSP _aluRes_T_12, operation Mode is: A*B.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: Generating DSP _aluRes_T_12, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: Generating DSP _aluRes_T_12, operation Mode is: PCIN+A*B.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: Generating DSP _aluRes_T_12, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: Generating DSP _aluRes_T_12, operation Mode is: A*B.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: Generating DSP _aluRes_T_12, operation Mode is: PCIN+A*B.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: Generating DSP _aluRes_T_12, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: Generating DSP _aluRes_T_12, operation Mode is: PCIN+A*B.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: Generating DSP _aluRes_T_12, operation Mode is: A*B.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: Generating DSP _aluRes_T_12, operation Mode is: PCIN+A*B.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: Generating DSP _aluRes_T_12, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: Generating DSP _aluRes_T_12, operation Mode is: PCIN+A*B.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: Generating DSP _aluRes_T_12, operation Mode is: A*B.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: Generating DSP _aluRes_T_12, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: Generating DSP _aluRes_T_12, operation Mode is: PCIN+A*B.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: Generating DSP _aluRes_T_12, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+DSP Report: operator _aluRes_T_12 is absorbed into DSP _aluRes_T_12.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\ID_EX/exception_cause_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (DIV/\cnt_reg[0] )
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\MEM_WB/exception_cause_reg[4] )
+WARNING: [Synth 8-3332] Sequential element (cnt_reg[0]) is unused and will be removed from module Div.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:24:54 ; elapsed = 01:01:58 . Memory (MB): peak = 2125.652 ; gain = 933.551 ; free physical = 2124 ; free virtual = 2379
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+ROM:
++------------+------------+---------------+----------------+
+|Module Name | RTL Object | Depth x Width | Implemented As | 
++------------+------------+---------------+----------------+
+|Div         | rom        | 128x6         | LUT            | 
+|Div         | rom__1     | 128x6         | LUT            | 
+|Div         | rom__2     | 128x6         | LUT            | 
+|Div         | rom__3     | 128x6         | LUT            | 
+|Div         | rom__4     | 128x6         | LUT            | 
+|Div         | rom__5     | 128x6         | LUT            | 
+|Div         | rom__6     | 128x6         | LUT            | 
+|Div         | rom__7     | 128x6         | LUT            | 
++------------+------------+---------------+----------------+
+
+
+DSP: Preliminary Mapping  Report (see note below)
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping    | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Ex          | A*B            | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Ex          | (PCIN>>17)+A*B | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Ex          | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Ex          | (PCIN>>17)+A*B | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Ex          | A*B            | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Ex          | (PCIN>>17)+A*B | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Ex          | PCIN+A*B       | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Ex          | (PCIN>>17)+A*B | 14     | 14     | -      | -      | 26     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Ex          | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Ex          | PCIN+A*B       | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Ex          | (PCIN>>17)+A*B | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Ex          | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Ex          | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Ex          | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Ex          | (PCIN>>17)+A*B | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Ex          | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Ex          | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Ex          | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Ex          | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Ex          | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+--------------+------------+----------+
+|      |RTL Partition |Replication |Instances |
++------+--------------+------------+----------+
+|1     |muxpart       |           1|    131040|
+|2     |If__GB1       |           1|       312|
+|3     |muxpart__1030 |           1|     65472|
+|4     |CSR__GB1      |           1|         4|
+|5     |CSR__GB2      |           1|     11840|
+|6     |CSR__GB3      |           1|     16775|
+|7     |CSR__GB4      |           1|     20890|
+|8     |CSR__GB5      |           1|     20172|
+|9     |MEM__GB0      |           1|     46577|
+|10    |MEM__GB1      |           1|     38793|
+|11    |MEM__GB2      |           1|      6065|
+|12    |MEM__GB3      |           1|     13280|
+|13    |MEM__GB4      |           1|     13685|
+|14    |MEM__GB5      |           1|     38317|
+|15    |MEM__GB6      |           1|     19453|
+|16    |MEM__GB7      |           1|     33431|
+|17    |MEM__GB8      |           1|     25147|
+|18    |MEM__GB9      |           1|     16368|
+|19    |MEM__GB10     |           1|     16368|
+|20    |Top__GC0      |           1|     22735|
++------+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\IF_ID/inst_reg[31] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\EX_MEM/loadOp_isLoad_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\EX_MEM/loadOp_isLoad_reg )
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[63]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[62]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[61]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[60]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[59]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[58]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[57]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[56]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[55]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[54]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[53]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[52]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[51]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[50]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[49]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[48]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[47]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[46]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[45]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[44]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[43]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[42]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[41]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[40]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[39]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[38]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[37]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[36]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[35]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[34]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[33]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[32]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[31]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[30]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[29]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[28]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[27]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[26]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[25]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[24]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[23]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[22]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[21]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[20]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[19]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[18]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[17]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[16]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[15]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[14]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[13]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[12]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[11]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[10]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[9]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[8]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[7]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[6]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[5]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[4]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[3]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[2]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[1]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_30_reg[0]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[63]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[62]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[61]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[60]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[59]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[58]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[57]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[56]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[55]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[54]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[53]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[52]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[51]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[50]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[49]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[48]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[47]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[46]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[45]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[44]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[43]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[42]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[41]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[40]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[39]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[38]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[37]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[36]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[35]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[34]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[33]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[32]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[31]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[30]) is unused and will be removed from module Regfile.
+WARNING: [Synth 8-3332] Sequential element (rf_29_reg[29]) is unused and will be removed from module Regfile.
+INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\priv_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\csr_reg[258][0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\csr_reg[258][2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\csr_reg[770][2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\csr_reg[770][0] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\priv_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\MEM_WB/writeRfOp_data_reg[63] )
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:26:02 ; elapsed = 01:03:27 . Memory (MB): peak = 2125.652 ; gain = 933.551 ; free physical = 2305 ; free virtual = 2581
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++------+--------------+------------+----------+
+|      |RTL Partition |Replication |Instances |
++------+--------------+------------+----------+
+|1     |Top__GC0      |           1|       459|
++------+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:26:02 ; elapsed = 01:03:28 . Memory (MB): peak = 2125.652 ; gain = 933.551 ; free physical = 2288 ; free virtual = 2581
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:26:04 ; elapsed = 01:03:30 . Memory (MB): peak = 2125.652 ; gain = 933.551 ; free physical = 2291 ; free virtual = 2585
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:26:04 ; elapsed = 01:03:30 . Memory (MB): peak = 2125.652 ; gain = 933.551 ; free physical = 2291 ; free virtual = 2586
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:26:04 ; elapsed = 01:03:30 . Memory (MB): peak = 2125.652 ; gain = 933.551 ; free physical = 2291 ; free virtual = 2585
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:26:04 ; elapsed = 01:03:30 . Memory (MB): peak = 2125.652 ; gain = 933.551 ; free physical = 2290 ; free virtual = 2585
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:26:04 ; elapsed = 01:03:30 . Memory (MB): peak = 2125.652 ; gain = 933.551 ; free physical = 2290 ; free virtual = 2585
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:26:04 ; elapsed = 01:03:30 . Memory (MB): peak = 2125.652 ; gain = 933.551 ; free physical = 2290 ; free virtual = 2585
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |OBUF |   224|
++------+-----+------+
+
+Report Instance Areas: 
++------+---------+-------+------+
+|      |Instance |Module |Cells |
++------+---------+-------+------+
+|1     |top      |       |   224|
++------+---------+-------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:26:04 ; elapsed = 01:03:30 . Memory (MB): peak = 2125.652 ; gain = 933.551 ; free physical = 2290 ; free virtual = 2586
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 6742 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:26:06 ; elapsed = 01:03:37 . Memory (MB): peak = 2125.652 ; gain = 933.551 ; free physical = 4517 ; free virtual = 4986
+Synthesis Optimization Complete : Time (s): cpu = 00:26:06 ; elapsed = 01:03:37 . Memory (MB): peak = 2125.652 ; gain = 933.551 ; free physical = 4535 ; free virtual = 4989
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+280 Infos, 401 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:26:14 ; elapsed = 01:03:47 . Memory (MB): peak = 2125.652 ; gain = 945.086 ; free physical = 4521 ; free virtual = 5015
+WARNING: [Constraints 18-5210] No constraint will be written out.
+INFO: [Common 17-1381] The checkpoint '/home/s081/Downloads/chisel-template/vivado/project_1/project_1.runs/synth_1/Top.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file Top_utilization_synth.rpt -pb Top_utilization_synth.pb
+report_utilization: Time (s): cpu = 00:00:00.54 ; elapsed = 00:00:01 . Memory (MB): peak = 2137.738 ; gain = 0.000 ; free physical = 4503 ; free virtual = 5015
+INFO: [Common 17-206] Exiting Vivado at Sat Aug 20 18:33:04 2022...

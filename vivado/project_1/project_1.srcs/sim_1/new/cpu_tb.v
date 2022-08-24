@@ -10,12 +10,12 @@ module cpu_tb();
     initial begin
         rst = 1'b1;
         #50 rst = 1'b0;
-        #500 $stop();
+        #1000 $stop();
     end
     
     Top rv64(
-        .io_clk(CLOCK_50),
-        .io_reset(rst)
+        .clock(CLOCK_50),
+        .reset(rst)
     );
 
 endmodule

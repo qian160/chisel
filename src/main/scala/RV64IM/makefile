@@ -15,13 +15,16 @@ VERILATOR = verilator  $(VSRC) $(CSRC) $(AUTO_BIND_SRC) $(ARCHIVE) \
 		$(addprefix -LDFLAGS , $(LDFLAGS)) 
 
 test:
-	sbt "testOnly RV64.TesterSpec"
+	sbt "testOnly Tester"
 	@echo success
 
 run:
-	sbt "runMain RV64.TesterGen --target-dir Verilog"
+	sbt "runMain TesterGen --target-dir Verilog"
 	@echo success
 
 all:
 	python3 $(NVBOARD_HOME)/scripts/auto_pin_bind.py $(BIND) $(AUTO_BIND_SRC)
 	$(VERILATOR)
+count:
+	ls | grep scala | xargs wc -l
+#	ls | grep scala | xargs cat | wc -l

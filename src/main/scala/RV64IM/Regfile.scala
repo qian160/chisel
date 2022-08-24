@@ -1,5 +1,3 @@
-package RV64
-
 import chisel3._
 import chisel3.util._
 
@@ -8,12 +6,11 @@ class Regfile extends Module{
         val id2Rf        = Input(new id2Rf)   //readIndex
         //wb to rf
         val writeRfOp    = Input(new writeRfOp)
-
         val rf2Id        = Output(new rf2Id)
     })
     //val rf = SyncReadMem(32,UInt(64.W))
     val rf    = RegInit(VecInit(Seq.fill(31)(0.U(64.W))))
-    rf(0) := 0.U
+    rf(0)    := 0.U
 
     when(io.writeRfOp.en){     
         if(io.writeRfOp.addr!= 0.U)   

@@ -1,5 +1,6 @@
-package RV64
-import Wallace._
+import Arith._
+import Helpers._
+
 import org.scalatest.flatspec.AnyFlatSpec
 import scala.io.StdIn
 import chisel3._                //basic data types
@@ -21,47 +22,36 @@ object D{       //debug
     val Blue   = "\u001b[40;34m[pass!]\u001b[0m"
     val Red    = "\u001b[40;31m[fail!]\u001b[0m"
     val Green  = "\u001b[40;32m[pass!]\u001b[0m"
-    def risingedge(x: Bool) = x && !RegNext(x)
+    def risingedge(x: Bool) = x && !RegNext(x)  //x: input signal Reg: stored signal, previous value
 }
-
-class test extends Module{
-    val io = IO(new Bundle{
-        val addr = Input(Bits(4.W))
-        val data = Output(Bits(4.W))
-    })
-    val m = SyncReadMem(100, Bits(4.W))
-    m(0) := 1.U ;m(1) := 2.U ;m(2) := 3.U ;m(3) := 4.U 
-    m(4) := 5.U ;m(5) := 6.U ;m(6) := 7.U ;m(7) := 8.U 
-    io.data := m(io.addr)
+object s{
+    val x = 0.U
+    val a = 1.U
+    val b = 2.U
+    val c = 3.U
 }
-
 class simple extends Module{
     val io = IO(new Bundle{
-        val i = Input(Bits(4.W))
+        val i = Input(Bool())
+        val d = Input(Bits(4.W))
         val o = Output(Bits(4.W))
     })
-    val test = Module(new test)
-    test.io.addr := io.i
-    io.o := test.io.data
-
+    val mem = Mem(4, UInt(4.W))
+    when(reset.asBool){
+        for(i <- 0 to 3){
+            mem(i)  := io.d
+        }
+    }
+    io.o := mem(0)
 }
 
-class TesterSpec extends AnyFlatSpec with ChiselScalatestTester{
+class Tester extends AnyFlatSpec with ChiselScalatestTester{
     val Rnd = new Random()
-    println("\u001b[40;32mgenerate verilog code...\u001b[0m")
+    println(D.yellow + "enerate verilog code..." + D.ed)
     println(getVerilogString(new simple))
     var cnt = 0
     "test" should "pass " in{
-        test(new simple){dut => 
-            for( i <- 0 to 7){
-                val v = dut.io.o.peek()
-                dut.io.i.poke(i)
-                println(s"$cnt : $v")
-                dut.clock.step()
-                println(s"$cnt : $v")
-                cnt = cnt + 1
-            }
-        }
+        test(new simple){ t => ()}
     }
 }
 
@@ -70,7 +60,6 @@ object TesterGen {
         args foreach println
         println(D.yellow+"generate verilog... "+D.ed)
         (new chisel3.stage.ChiselStage).emitVerilog(new Top,args)
-
     }
 }
 /*
@@ -100,7 +89,8 @@ object Tester {
 */
 
 /*
-    old methods, should avoid to use!
+old method
+
 class TesterPP(dut:Inst_Rom) extends PeekPokeTester(dut) {
     val Rnd = new Random()
     //val cnt = RegInit(0.U)

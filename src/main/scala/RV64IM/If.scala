@@ -1,61 +1,50 @@
-package RV64
 import chisel3._
 import chisel3.util._
 import chisel3.util.experimental.loadMemoryFromFileInline
-
-/*
-class Pc extends Module{    //maybe this doesn't need a flush?...
-    val io = IO(new Bundle{
-        val stall       = Input(Bool())
-        val branchOp    = Input(new branchOp)
-        val reset       = Input(Bool())
-        val pc          = Output(Bits(64.W))     //add more input ports in later design
-    })
-    val pc       = RegInit(0.U(64.W))
-    when(io.reset){
-        pc  :=  0.U
-    }.elsewhen(io.stall){ 
-        pc  := pc 
-    }.elsewhen(io.branchOp.taken){
-        pc  := io.branchOp.target
-    }.otherwise{
-        pc  := pc + 4.U
-    }
-    io.pc   := pc
-
-}
-*/
+//add exceptions
 class If extends Module{
     val io = IO(new Bundle{
-        val reset      = Input(Bool())
         val stall      = Input(Bool())
         val flush      = Input(Bool())
-//        val pc_i       = Input(Bits(64.W))
-//        val inst_i     = Input(Bits(32.W))
+        val excep      = Input(new IF_excep)
         val branchOp   = Input(new branchOp)
 
         val pc_o       = Output(UInt(64.W))
         val inst_o     = Output(Bits(32.W))
     })
-    val inst_rom  = SyncReadMem(8 * 1024 , Bits(32.W))
-    loadMemoryFromFileInline(inst_rom,"/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Inst_Rom.data")
-
-    //test the flush
-    val pc        = RegInit(0.U(64.W))
-    val flush     = RegNext(io.flush)       //delay a cycle, need to be improved
-    io.inst_o    := Mux(io.reset | flush, 0.U, inst_rom(pc >> 2))
-    //when a branch is taken, the previous fetched inst will be flushed, which acts like inserting a bubble
-    when(io.reset){
-        pc  :=  0.U
-    }.elsewhen(io.stall){ 
-        pc  := pc 
-    }.elsewhen(io.branchOp.taken){
-        pc  := io.branchOp.target
-    }.otherwise{
-        pc  := pc + 4.U
-    }
-
-    //io.inst_o   := Mux(io.reset, 0.U, io.inst_i)
-    io.pc_o     := pc
-
+    val inst_rom  = Mem( 0x1000 , Bits(32.W))
+    loadMemoryFromFileInline(inst_rom, CONST.RV_HOME + "Inst_Rom.data")
+    //IF is combinational logic, but some control signals arrives earlier, so need to be latched
+//    val flush     = RegNext(io.flush)               //need to delay a cycle. because flush is used in combinational logic and it is sent to IF earlier
+/*
+    val next_pc   = RegInit(CONST.PC_INIT)          //updated pc in the next cycle
+    val curr_pc   = RegNext(next_pc)                //the pc being used currently
+    next_pc  := PriorityMux(Seq(
+        (reset.asBool,          0.U),
+        (io.excep,              io.xtvec),
+        (io.branchOp.taken,     io.branchOp.target),    //when stall and branch both appear, if we check stall first, we will lose the branch information in the next cycle
+        (io.stall,              next_pc),
+        (true.B,                next_pc + 4.U)
+    ))
+    //small problem: branch after div. Then stall, flush and taken could appear at the same time
+    curr_pc  := PriorityMux(Seq(
+        (reset.asBool,          0.U),
+        (io.stall & ~flush,     curr_pc),   //not true only when branch after div
+        (true.B,                next_pc)
+    ))
+    */
+    val pc      = RegInit(CONST.PC_INIT)
+    val next_pc = PriorityMux(Seq(
+        (reset.asBool,          0.U),
+        (io.excep.happen,       io.excep.new_pc),
+        (io.branchOp.taken,     io.branchOp.target),    //when stall and branch both appear, if we check stall first, we will lose the branch information in the next cycle
+        (io.stall,              pc),
+        (true.B,                pc + 4.U)
+    ))
+    pc  :=  next_pc
+    //the first inst after _start should be nop
+    //use curr_pc
+    //io.inst_o    := Mux(reset.asBool | flush, 0.U, inst_rom(pc >> 2))
+    io.inst_o    := Mux(reset.asBool, 0.U, inst_rom(pc >> 2))
+    io.pc_o      := pc
 }

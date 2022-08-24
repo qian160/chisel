@@ -1,6 +1,9 @@
-RV64IM additional insts
-csr
+*csr
 register renaming
 branch prediction
-co-processor?
-srt division
+#srt division
+AXI bus
+*cache
+*exception
+*privilege level
+*TLB, VM

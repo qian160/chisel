@@ -2,12 +2,11 @@
 2018.2
 Jun 14 2018
 20:07:38
-/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/BoothEncoder4.v,1656426641,verilog,,/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/booth_tb.v,,BoothEncoder4,,,,,,,,
-/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v,1658565859,verilog,,/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/booth_tb.v,,Ctrl;Ex;Ex_Mem;Id;Id_Ex;If;If_Id;Mem_Wb;Memory;Regfile;Top;Wb,,,,,,,,
+/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v,1661338579,verilog,,/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/booth_tb.v,,CSR;Ctrl;Div;Ex;Ex_Mem;Id;Id_Ex;If;If_Id;MEM;Mem_Wb;Regfile;Top;Wb,,,,,,,,
 /home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/booth_tb.v,1657799480,verilog,,/home/s081/Downloads/chisel-template/vivado/project_1/project_1.srcs/sim_1/new/led_tb.v,,tb,,,,,,,,
 /home/s081/Downloads/chisel-template/vivado/project_1/project_1.sim/sim_1/behav/xsim/glbl.v,1658553461,verilog,,,,glbl,,,,,,,,
 /home/s081/Downloads/chisel-template/vivado/project_1/project_1.srcs/sim_1/new/adder_tb.v,1656400152,verilog,,/home/s081/Downloads/chisel-template/vivado/project_1/project_1.srcs/sim_1/new/cpu_tb.v,,adder_tb,,,,,,,,
-/home/s081/Downloads/chisel-template/vivado/project_1/project_1.srcs/sim_1/new/cpu_tb.v,1658552152,verilog,,/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/simpleTB.v,,cpu_tb,,,,,,,,
+/home/s081/Downloads/chisel-template/vivado/project_1/project_1.srcs/sim_1/new/cpu_tb.v,1660456735,verilog,,/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/simpleTB.v,,cpu_tb,,,,,,,,
 /home/s081/Downloads/chisel-template/vivado/project_1/project_1.srcs/sim_1/new/led_tb.v,1657472749,verilog,,/home/s081/Downloads/chisel-template/vivado/project_1/project_1.srcs/sim_1/new/adder_tb.v,,led_tb,,,,,,,,
 /home/s081/Downloads/chisel-template/vivado/project_1/project_1.srcs/sources_1/new/Mult.v,1657820703,verilog,,/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Verilog/Top.v,,BoothEncoder2;BoothEncoder8;Csa;Mult;Ppg2,,,,,,,,
 /home/s081/Downloads/chisel-template/vivado/project_1/project_1.srcs/sources_1/new/led.v,1656403237,verilog,,/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Top.v,,led,,,,,,,,

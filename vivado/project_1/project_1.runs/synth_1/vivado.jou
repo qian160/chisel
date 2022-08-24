@@ -2,11 +2,11 @@
 # Vivado v2018.2 (64-bit)
 # SW Build 2258646 on Thu Jun 14 20:02:38 MDT 2018
 # IP Build 2256618 on Thu Jun 14 22:10:49 MDT 2018
-# Start of session at: Sat Jul 23 11:25:14 2022
-# Process ID: 276389
+# Start of session at: Sat Aug 20 17:28:35 2022
+# Process ID: 261908
 # Current directory: /home/s081/Downloads/chisel-template/vivado/project_1/project_1.runs/synth_1
-# Command line: vivado -log simple.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source simple.tcl
-# Log file: /home/s081/Downloads/chisel-template/vivado/project_1/project_1.runs/synth_1/simple.vds
+# Command line: vivado -log Top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Top.tcl
+# Log file: /home/s081/Downloads/chisel-template/vivado/project_1/project_1.runs/synth_1/Top.vds
 # Journal file: /home/s081/Downloads/chisel-template/vivado/project_1/project_1.runs/synth_1/vivado.jou
 #-----------------------------------------------------------
-source simple.tcl -notrace
+source Top.tcl -notrace

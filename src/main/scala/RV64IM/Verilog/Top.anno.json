@@ -9,8 +9,14 @@
   },
   {
     "class":"firrtl.annotations.MemoryFileInlineAnnotation",
-    "target":"~Top|Inst_Rom>mem",
+    "target":"~Top|If>inst_rom",
     "filename":"/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/Inst_Rom.data",
+    "hexOrBinary":"h"
+  },
+  {
+    "class":"firrtl.annotations.MemoryFileInlineAnnotation",
+    "target":"~Top|CSR>csr",
+    "filename":"/home/s081/Downloads/chisel-template/src/main/scala/RV64IM/csr.data",
     "hexOrBinary":"h"
   }
 ]

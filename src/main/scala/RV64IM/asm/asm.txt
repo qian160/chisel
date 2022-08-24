@@ -4,26 +4,53 @@ test.o:     file format elf64-littleriscv
 
 Disassembly of section .text:
 
-0000000000000000 <_start>:
-   0:	01100093          	li	ra,17
-   4:	02200113          	li	sp,34
-   8:	00115863          	bge	sp,ra,18 <t1>
-   c:	02000063          	beqz	zero,2c <t2>
-  10:	00000113          	li	sp,0
-  14:	00000193          	li	gp,0
+0000000000000000 <trap_M>:
+   0:	342020f3          	csrr	ra,mcause
+   4:	30002173          	csrr	sp,mstatus
+   8:	341021f3          	csrr	gp,mepc
+   c:	01100093          	li	ra,17
+  10:	fe0008e3          	beqz	zero,0 <trap_M>
+  14:	00000013          	nop
+  18:	30200073          	mret
+	...
 
-0000000000000018 <t1>:
-  18:	00000093          	li	ra,0
-  1c:	00000013          	nop
-  20:	00000013          	nop
-  24:	00000013          	nop
+0000000000000100 <trap_S>:
+ 100:	142020f3          	csrr	ra,scause
+ 104:	10002173          	csrr	sp,sstatus
+ 108:	141021f3          	csrr	gp,sepc
+ 10c:	02200093          	li	ra,34
+ 110:	fe0008e3          	beqz	zero,100 <trap_S>
+ 114:	00000013          	nop
+ 118:	10200073          	sret
+	...
 
-0000000000000028 <loop>:
-  28:	00000063          	beqz	zero,28 <loop>
+0000000000000200 <trap_U>:
+ 200:	042020f3          	csrr	ra,ucause
+ 204:	00002173          	csrr	sp,ustatus
+ 208:	041021f3          	csrr	gp,uepc
+ 20c:	03300093          	li	ra,51
+ 210:	fe0008e3          	beqz	zero,200 <trap_U>
+ 214:	00000013          	nop
+ 218:	00200073          	uret
+	...
 
-000000000000002c <t2>:
-  2c:	00000113          	li	sp,0
+0000000000000400 <_start>:
+ 400:	00000013          	nop
+ 404:	1140b0f3          	csrrc	ra,0x114,ra
+ 408:	00000a63          	beqz	zero,41c <bad>
+ 40c:	00100093          	li	ra,1
+ 410:	00200113          	li	sp,2
+ 414:	00300193          	li	gp,3
+ 418:	00400213          	li	tp,4
 
-0000000000000030 <loop2>:
-  30:	00001463          	bnez	zero,38 <loop2+0x8>
-  34:	fcdff06f          	j	0 <_start>
+000000000000041c <bad>:
+ 41c:	00000093          	li	ra,0
+ 420:	00000113          	li	sp,0
+ 424:	00000193          	li	gp,0
+ 428:	00000213          	li	tp,0
+ 42c:	fe0008e3          	beqz	zero,41c <bad>
+ 430:	00000013          	nop
+
+0000000000000434 <loop>:
+ 434:	00000063          	beqz	zero,434 <loop>
+ 438:	00000013          	nop

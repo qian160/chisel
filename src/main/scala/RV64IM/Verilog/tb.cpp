@@ -1,32 +1,39 @@
 #include<verilated.h>                                                                 
-#include<VTop.h>
+#include<VDiv.h>
 #include<iostream>
 #include<verilated_vcd_c.h>
 
-VTop * top = new VTop("top");
-vluint64_t TIME = 0;
+VDiv * top = new VDiv("top");
 VerilatedVcdC * tfp = new VerilatedVcdC; 
-VerilatedContext * contextp = new VerilatedContext;
+vluint64_t TIME = 0;
 
 void step()
 {
-        top -> eval();
+        top -> clock = (top -> clock + 1) % 2;
+	top -> eval();
 	tfp -> dump(TIME++);
+	printf("REM = %ld, QUO = %ld\n", top -> io_rem, top -> io_quo);
 }
 
-void initialize()
+void initialize(int a, int b)
 {
         Verilated::traceEverOn(true);
         top->trace(tfp,0); 
         tfp->open("wave.vcd");
-
+	top -> io_a = a;
+	top -> io_b = b;
+	top -> io_start = 1;
+	top -> clock = 0;
 }
 
 int main(int argc,char **argv)
 {
+	int a = atoi(argv[1]);
+	int b = atoi(argv[2]);
 //	contextp -> commandArgs(argc,argv);
-        initialize();
-        while(1)
+	int n = 20000;
+	initialize(a,b);
+	while(n--)
         {
                 step();
                 //assert(top -> x * top -> y == top -> z); 

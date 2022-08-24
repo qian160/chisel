@@ -1,0 +1,5 @@
+TLB: holding pairs of <VA, PA>. When input a VA, before translating we first search it in the TLB, which saves time
+
+The TLB is itself a cache memory which 
+stores recently used address translation information, so that translation can occur
+quickly.
