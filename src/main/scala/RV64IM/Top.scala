@@ -34,7 +34,7 @@ class Top extends Module{
     EX_MEM.io.stall     := CTRL.io.stall(3)
     MEM_WB.io.stall     := CTRL.io.stall(4)
 
-    IF.io.flush         := CTRL.io.flush(0)
+    //IF.io.flush         := CTRL.io.flush(0)
     IF_ID.io.flush      := CTRL.io.flush(1)
     ID_EX.io.flush      := CTRL.io.flush(2)
     EX_MEM.io.flush     := CTRL.io.flush(3)
@@ -42,12 +42,13 @@ class Top extends Module{
 
     IF.io.branchOp      := ID.io.decInfo.branchOp
     IF.io.excep         := WB.io.if_excep
+    IF.io.fromCSR       := CSR.io.CSR_2_IF
 
     IF_ID.io.inst_i     := IF.io.inst_o
-    IF_ID.io.pc_i       := IF.io.pc_o
+    IF_ID.io.exception_i:= IF.io.exception
 
     ID.io.inst_i        := IF_ID.io.inst_o
-    ID.io.pc            := IF_ID.io.pc_o
+    ID.io.exception_i   := IF_ID.io.exception_o
     //read after load
     ID.io.prev_rd       := ID_EX.io.decInfo_o.rd
     ID.io.prev_is_load  := ID_EX.io.decInfo_o.loadOp.isLoad
@@ -59,8 +60,7 @@ class Top extends Module{
     ID.io.CSR_2_ID          <>  CSR.io.CSR_2_ID
 
     ID_EX.io.decInfo_i      <>  ID.io.decInfo
-    ID_EX.io.exception_i    <>  ID.io.exception
-
+    ID_EX.io.exception_i    <>  ID.io.exception_o
 
     EX.io.decInfo           <>  ID_EX.io.decInfo_o
     EX.io.exception_i       <>  ID_EX.io.exception_o

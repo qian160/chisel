@@ -5,11 +5,11 @@ import chisel3.util._
 
 class Id extends RawModule{
     val io = IO(new Bundle{
-        val pc            = Input(Bits(64.W))
         val inst_i        = Input(Bits(32.W))
         val rf2Id         = Input(new rf2Id())      //REG OPERAND
         val fwd           = Input(new fwd)          //the newest rf and csr values
         val CSR_2_ID      = Input(new CSR_2_ID)
+        val exception_i   = Input(new exception)
         //read after load, need a stall
         val prev_is_load  = Input(Bool())
         val prev_rd       = Input(Bits(5.W))
@@ -19,14 +19,15 @@ class Id extends RawModule{
         val decInfo       = Output(new decInfo)     //all the information decoded
         val flush_req     = Output(Bool())
         val stall_req     = Output(Bool())          //read after load 
-        val exception     = Output(new exception)
+        val exception_o   = Output(new exception)
     })
 
+    val pc       = io.exception_i.pc
     val inst     = io.inst_i
     val funct3   = inst(14,12)
     val csrAddr  = inst(31,20)
-    val priv     = io.CSR_2_ID.priv
-    val xtvec    = io.CSR_2_ID.xtvec
+    val priv     = io.exception_i.priv
+    val xtvec    = io.exception_i.new_pc    //default is xtvec
     val xepc     = io.CSR_2_ID.xepc
 
     //information about reg oprands
@@ -43,9 +44,9 @@ class Id extends RawModule{
     val imm_U    = Util.signExtend(inst(31,12),64)
     val uimm     = inst(19,15)  //used in csrr{w/s/c}i. zero-extending
 
-    val branch_target   = imm_B + io.pc
-    val jal_target      = imm_J + io.pc
-    val jalr_target     = imm_I + io.pc
+    val branch_target   = imm_B + pc
+    val jal_target      = imm_J + pc
+    val jalr_target     = imm_I + pc
 
     val decRes   = ListLookup(inst,DecTable.defaultDec,DecTable.decMap)     //returns list(instType,opt)
     val instType = decRes(DecTable.TYPE)    //R I S B J U
@@ -89,17 +90,7 @@ class Id extends RawModule{
     io.ID_2_CSR         := 0.U.asTypeOf(new ID_2_CSR)
     io.decInfo.aluop    := decOpt
     io.decInfo.InstType := instType
-    //exceptions. Gathering information alone the way and deal with it in WB 
-    //don't modify
-    io.exception.pc     := io.pc
-    io.exception.priv   := priv
-    //may be modified
-    io.exception.happen := false.B
-    io.exception.int    := false.B
-    io.exception.cause  := 0.U
-    io.exception.xtval  := 0.U      //bad inst or address
-
-    io.exception.new_pc := io.CSR_2_ID.xtvec    //default entry is xtvec
+    io.exception_o      := io.exception_i
     //load
     when(inst(6,0) === "b0000011".U ){
         //add sign
@@ -126,9 +117,9 @@ class Id extends RawModule{
         is(InstType.BAD){
             //under reset or flush, a zero inst will be given, but no exception is actually happening
             //need to be improved. Zero inst may also be a bad inst not just because of flush or reset
-            io.exception.happen     := Mux(inst === 0.U, false.B, true.B)
-            io.exception.cause      := Cause.IllegalInst
-            io.exception.xtval      := inst
+            io.exception_o.happen   := Mux(inst === 0.U, false.B, true.B)
+            io.exception_o.cause    := Cause.IllegalInst
+            io.exception_o.xtval    := inst
         }
         is(InstType.R){
             io.decInfo.oprand1      := rs1Val
@@ -143,7 +134,7 @@ class Id extends RawModule{
             io.decInfo.rd           := rd
             //JALR is also I type
             when(decRes(DecTable.OPT) === OptCode.JALR){        //rd = pc + 4, pc = imm + rs1
-                io.decInfo.oprand1  := io.pc
+                io.decInfo.oprand1  := pc
                 io.decInfo.oprand2  := 4.U
                 io.decInfo.branchOp.taken   := true.B
                 io.decInfo.branchOp.target  := jalr_target
@@ -174,7 +165,7 @@ class Id extends RawModule{
             io.flush_req        := Mux(taken, true.B, false.B)
         }
         is(InstType.J){     //jal,  rd = pc + 4, pc += imm.
-            io.decInfo.oprand1          :=  io.pc
+            io.decInfo.oprand1          :=  pc
             io.decInfo.oprand2          :=  4.U
             io.decInfo.wreg             :=  true.B
             io.decInfo.branchOp.taken   :=  true.B
@@ -182,7 +173,7 @@ class Id extends RawModule{
             io.flush_req                :=  true.B
         }
         is(InstType.U){     //LUI, AUIPC. IF OPCODE(5) = 1, THEN LUI
-            io.decInfo.oprand1  :=  Mux(inst(5), 0.U, io.pc)
+            io.decInfo.oprand1  :=  Mux(inst(5), 0.U, pc)
             io.decInfo.oprand2  :=  imm_U << 12
             io.decInfo.wreg     :=  true.B
             io.decInfo.rd       :=  rd
@@ -201,16 +192,15 @@ class Id extends RawModule{
             }.otherwise{
                 val inst_p2         = inst(21, 20)  //or maybe (24, 20)?
                 val X               = inst(29, 28)
-                io.exception.happen := true.B
+                io.exception_o.happen := true.B
                 //xret is very similar to exceptions: cancel all the next insts' execuations and jump to a target
                 switch(inst_p2){
                     is(SYS_INST.XRet){
                         val cause       =  Mux(priv >= X, Cause.XRet, Cause.IllegalInst)
                         val new_pc_Sel  =  cause(4)     //16 for XRet
                         //xepc + 4 is determined by handler. We need no concern
-                        io.exception.cause  :=  cause
-                        io.exception.new_pc :=  Mux(new_pc_Sel, xepc, xtvec)    //epc + 4?
-                        //io.exception.new_pc   := MuxLookup(cause, 0.U, Seq(...))
+                        io.exception_o.cause  :=  cause
+                        io.exception_o.new_pc :=  Mux(new_pc_Sel, xepc, xtvec)
                     }
                 }
             }
@@ -221,5 +211,5 @@ class Id extends RawModule{
     io.id2Rf.ReadIdx2   := rs2
 
     io.ID_2_CSR.addr    := csrAddr
-    io.ID_2_CSR.wdata   :=  Mux(instType === InstType.SYS, csrNewVal, 0.U)    //to check whether it's a legal write
+    io.ID_2_CSR.wdata   := Mux(instType === InstType.SYS, csrNewVal, 0.U)    //to check whether it's a legal write
 }

@@ -5,25 +5,25 @@ class If_Id extends Module{
     val io = IO(new Bundle{
         val stall       = Input(Bool())
         val flush       = Input(Bool())
-        val pc_i        = Input(Bits(64.W))
+        val exception_i = Input(new exception)
         val inst_i      = Input (Bits(32.W))
-
-        val pc_o        = Output(Bits(64.W))
+        //pc is wrapped in exception
         val inst_o      = Output(Bits(32.W))
+        val exception_o = Output(new exception)
     })
 
-    val inst     = RegNext(io.inst_i)
-    val pc       = RegNext(io.pc_i)
+    val inst        = RegNext(io.inst_i)
+    val exception   = RegNext(io.exception_i)
 
     when(reset.asBool | io.flush){
-        inst    := 0.U
-        pc      := 0.U
+        inst        := 0.U
+        exception   := 0.U.asTypeOf(new exception)
     }.elsewhen(io.stall){
-        inst    := inst
-        pc      := pc
+        inst        := inst
+        exception   := exception
     }
-    io.inst_o := inst
-    io.pc_o   := pc
+    io.inst_o       := inst
+    io.exception_o  := exception
 
 }
 

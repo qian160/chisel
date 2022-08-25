@@ -105,9 +105,14 @@ class CSR_2_ID extends Bundle{
     val data        = Bits(64.W)
     val legalWrite  = Bool()        //set en = false if illegal
     val legalRead   = Bool()        //set rd = 0 to disable bypass and throw away the data just read
-    val priv        = Bits(2.W)     //used for xret's check 
-    val xtvec       = Bits(64.W)    //default exception entry
+    //val priv        = Bits(2.W)     //used for xret's check?
+    //val xtvec       = Bits(64.W)    //default exception entry
     val xepc        = Bits(64.W)
+}
+
+class CSR_2_IF extends Bundle{        //to initialize exception info
+    val xtvec   =   Bits(64.W)
+    val priv    =   Bits(2.W)
 }
 
 class exception extends Bundle{     //to csr

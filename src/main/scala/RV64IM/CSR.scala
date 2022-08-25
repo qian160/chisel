@@ -19,6 +19,7 @@ class CSR extends Module{
         val writeOp      = Input(new writeCSROp)
         val exception    = Input(new exception)
         val CSR_2_ID     = Output(new CSR_2_ID)
+        val CSR_2_IF     = Output(new CSR_2_IF)
     })
 
     val csr     = Mem(0x400, UInt(64.W))        //registers
@@ -142,11 +143,12 @@ class CSR extends Module{
     }
 
     io.CSR_2_ID.xepc        :=  xepc
-    io.CSR_2_ID.xtvec       :=  Mux(xtvec_mode, base + cause << 2, base)
     io.CSR_2_ID.data        :=  csr(csrAddr)
     io.CSR_2_ID.legalWrite  :=  legalWrite
     io.CSR_2_ID.legalRead   :=  legalRead
-    io.CSR_2_ID.priv        :=  priv
+    
+    io.CSR_2_IF.xtvec       :=  Mux(xtvec_mode, base + cause << 2, base)
+    io.CSR_2_IF.priv        :=  priv
 
 /*
     val ie = MuxLookup(prv, false.B, Seq(
