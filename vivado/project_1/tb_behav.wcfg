@@ -11,13 +11,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="134000001fs"></ZoomEndTime>
-      <Cursor1Time time="50000000fs"></Cursor1Time>
+      <ZoomStartTime time="76480000fs"></ZoomStartTime>
+      <ZoomEndTime time="222859256fs"></ZoomEndTime>
+      <Cursor1Time time="150000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="127"></NameColumnWidth>
-      <ValueColumnWidth column_width="142"></ValueColumnWidth>
+      <ValueColumnWidth column_width="138"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="18" />
    <wvobject type="logic" fp_name="/cpu_tb/CLOCK_50">
@@ -141,8 +141,10 @@
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
       <wvobject type="array" fp_name="/cpu_tb/rv64/ID/io_CSR_2_ID_data">
+         <obj_property name="DisplayName">label</obj_property>
          <obj_property name="ElementShortName">io_CSR_2_ID_data[63:0]</obj_property>
          <obj_property name="ObjectShortName">io_CSR_2_ID_data[63:0]</obj_property>
+         <obj_property name="label">csrData</obj_property>
       </wvobject>
       <wvobject type="logic" fp_name="/cpu_tb/rv64/ID/io_CSR_2_ID_legalRead">
          <obj_property name="ElementShortName">io_CSR_2_ID_legalRead</obj_property>

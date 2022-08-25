@@ -9,9 +9,11 @@ trap_M:
 	csrr x2,mstatus
 	csrr x3,mepc
 	li x1,0x11
-	beqz x0,trap_M
-	nop
 	mret
+	nop
+	nop
+	nop
+	nop
 .org 0x100
 trap_S:
 	csrr x1,scause
@@ -33,14 +35,17 @@ trap_U:
 	
 .org 0x400
 _start:
-	nop
+	nop			#important
+#insert an illegal instruction
 	csrrc x1,0x114,x1
-	beqz x0, bad
+#	beqz x0, good
+#	beqz x0, bad
 	li x1,1
 	li x2,2
 	li x3,3
 	li x4,4
 
+.org 0x500
 bad:
 	li x1,0
 	li x2,0
@@ -48,6 +53,14 @@ bad:
 	li x4,0
 	beqz x0,bad
 	nop
+
+.org 0x600
+good:
+	li x1, 0x88
+	beqz x0, good
+	nop
+
+.org 0x700
 loop:
 	beqz x0,loop
 	nop

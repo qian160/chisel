@@ -271,8 +271,6 @@ object Cause{
     //not standard
     val XRet                = 16.U
 
-
-
 }
 
 class MStatus extends Bundle {  //M means the machine, not M mode
