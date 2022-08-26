@@ -189,14 +189,14 @@ class Id extends RawModule{
                 io.decInfo.writeCSROp.data  :=  Mux(csr_legalWrite, csrNewVal, 0.U)
                 io.decInfo.writeCSROp.addr  :=  Mux(csr_legalWrite, csrAddr, 0.U)
                 io.decInfo.writeCSROp.en    :=  Mux(csr_legalWrite, true.B, false.B)
-            }.otherwise{
+            }.otherwise{        //xret 
                 val inst_p2         = inst(21, 20)  //or maybe (24, 20)?
                 val X               = inst(29, 28)
                 io.exception_o.happen := true.B
                 //xret is very similar to exceptions: cancel all the next insts' execuations and jump to a target
                 switch(inst_p2){
                     is(SYS_INST.XRet){
-                        val cause       =  Mux(priv >= X, Cause.XRet, Cause.IllegalInst)
+                        val cause       =  Mux(priv >= X, Cause.XRet(priv), Cause.IllegalInst)
                         val new_pc_Sel  =  cause(4)     //16 for XRet
                         //xepc + 4 is determined by handler. We need no concern
                         io.exception_o.cause  :=  cause

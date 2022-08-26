@@ -71,6 +71,7 @@ class CSR extends Module{
     mtvec       := CONST.TRAP_M << 2        //FIXED
     stvec       := CONST.TRAP_S << 2
     utvec       := CONST.TRAP_U << 2
+    //set a bit in deleg reg will send the corrensponding i/e to lower level handler. For example, set medeleg(2) to be 1 will send #2 i/e to S handler
     medeleg     := 0.U
     mideleg     := 0.U
     sedeleg     := 0.U
@@ -100,13 +101,19 @@ class CSR extends Module{
     val cause       = Cat(is_Int, 0.U(58.W), io.exception.cause)    //1 + 58 + 5
     val epc         = io.exception.pc
     val xtval       = io.exception.xtval
-    val timer_inter = (mtime >= mtimecmp)
     val xtvec_mode  = xtvec(0) | xtvec(1)        //1 for vector, 0 for direct. the mode field is 2-bit wide
     val base        = xtvec(63, 2)
-    when(io.exception.happen/*& ?? */){
-        //interrupt, exception. default go to M mode, these deleg registers can redirect handler entry to a lower mode
+    when(io.exception.happen){
+        //interrupt, exception. default go to M mode
+        //we treat XRet as exception, but they modify csr differently. other instructions cause the exception, and XRet recover from the exception
+        when(cause(4)){     //is XRet
+            //nextPriv := xx.xPP...
+            nextPriv := PriorityMux(Seq(
+
+            ))
+        }
         nextPriv :=  PriorityMux(Seq(
-            (!is_Int && !medeleg(cause(4,0)), Priv.M),  
+            (!is_Int && !medeleg(cause(4,0)), Priv.M),
             ( is_Int && !mideleg(cause(4,0)), Priv.M),
             (!is_Int && !sedeleg(cause(4,0)), Priv.S),
             ( is_Int && !sideleg(cause(4,0)), Priv.S),
@@ -146,17 +153,19 @@ class CSR extends Module{
     io.CSR_2_ID.data        :=  csr(csrAddr)
     io.CSR_2_ID.legalWrite  :=  legalWrite
     io.CSR_2_ID.legalRead   :=  legalRead
-    
-    io.CSR_2_IF.xtvec       :=  Mux(xtvec_mode, base + cause << 2, base)
+
+    io.CSR_2_IF.xtvec       :=  Mux(is_Int & xtvec_mode, base + cause << 2, base)
     io.CSR_2_IF.priv        :=  priv
 
-/*
-    val ie = MuxLookup(prv, false.B, Seq(
+    val ie = MuxLookup(priv, false.B, Seq(
         Priv.M  -> mstatus.MIE,
         Priv.S  -> mstatus.SIE,
         Priv.U  -> mstatus.UIE
     ))
-*/
+    val ei  = false.B       //external interrupt
+    val timer_inter = ie & mie(MIE.MTIE) & (mtime >= mtimecmp)
+
+
 }
 //xideg: send trap to be handled by the x-1 mode trap handler
 object ADDR{
@@ -242,37 +251,6 @@ object Priv{
     val U = 0.U(2.W)
     val S = 1.U(2.W)    //2 is reserved
     val M = 3.U(2.W)
-}
-
-object Cause{
-//int. software, timer, external
-    val USI = 0.U
-    val SSI = 1.U
-    val MSI = 3.U
-    val UTI = 4.U
-    val STI = 5.U
-    val MTI = 7.U
-    val UEI = 8.U
-    val SEI = 9.U
-    val MEI = 11.U
-//exception
-    val InstAddrMisaligned  = 0.U       //IF
-    val InstAccessFault     = 1.U       //IF?
-    val IllegalInst         = 2.U       //ID?
-    val BreakPoint          = 3.U       //ebreak
-    val LoadAddrMisaligned  = 4.U       //MEM
-    val LoadAccessFault     = 5.U
-    val StoreAddrMisaligned = 6.U
-    val StoreAccessFailed   = 7.U       
-    val EcallFromUMode      = 8.U       //ID
-    val EcallFromSMode      = 9.U
-    val EcallFromMMode      = 11.U
-    val InstPageFault       = 12.U      //IF
-    val LoadPageFault       = 13.U
-    val StorePageFault      = 15.U
-    //not standard
-    val XRet                = 16.U
-
 }
 
 class MStatus extends Bundle {  //M means the machine, not M mode

@@ -43,7 +43,7 @@ class Top extends Module{
     IF.io.branchOp      := ID.io.decInfo.branchOp
     IF.io.excep         := WB.io.if_excep
     IF.io.fromCSR       := CSR.io.CSR_2_IF
-
+/*pipeline registers------------------------------------------------------------------------------------------------------*/
     IF_ID.io.inst_i     := IF.io.inst_o
     IF_ID.io.exception_i:= IF.io.exception
 
@@ -84,6 +84,7 @@ class Top extends Module{
     WB.io.writeRfOp_i       <>  MEM_WB.io.writeRfOp_o
     WB.io.writeCSROp_i      <>  MEM_WB.io.writeCSROp_o
     WB.io.exception_i       <>  MEM_WB.io.exception_o
+/*------------------------------------------------------------------------------------------------------*/
 //write back
     REGFILE.io.writeRfOp    <>  WB.io.writeRfOp_o
     CSR.io.writeOp          <>  WB.io.writeCSROp_o

@@ -2,7 +2,7 @@
 #include<fstream>
 #include<regex>
 using namespace std;
-int64_t hex2dec(string & hex){
+int64_t hex2dec(string hex){
 	int64_t result = 0;		//res = res << 4 + hex[i]
 	int64_t adder  = 0;
 	for(char c: hex){
@@ -57,10 +57,8 @@ int main(int argc, char ** argv)
 			for (int64_t i = diff >> 2 ; i > 1 ; i--)
 				cout<<"00000013"<<endl;			
 		}
-		auto ret = regex_search(line, m, inst, regex_constants::match_default);
-		for(auto &a : m)
-			cout<<a;
-		cout<<endl;
+		regex_search(line, m, inst, regex_constants::match_default);
+		cout << m.str() << endl;
 		oldAddr = newAddr;
 	}
 	in.close();

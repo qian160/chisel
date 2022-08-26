@@ -91,6 +91,7 @@ object SYS_INST {   //inst(21, 20)
     val ecall   = "b00".U(2.W)   
     val ebreak  = "b01".U(2.W)   
 }
+
 object InstType {
     // R,I,S,B,U,J
     val BAD = 0.U(4.W)
@@ -278,4 +279,39 @@ object DecTable {
     // fields, list index
     val TYPE = 0
     val OPT = 1
+}
+
+object Cause{
+//int. software, timer, external
+    val USI = 0.U
+    val SSI = 1.U
+    val MSI = 3.U
+    val UTI = 4.U
+    val STI = 5.U
+    val MTI = 7.U
+    val UEI = 8.U
+    val SEI = 9.U
+    val MEI = 11.U
+//exception
+    val InstAddrMisaligned  = 0.U       //IF
+    val InstAccessFault     = 1.U       //IF?
+    val IllegalInst         = 2.U       //ID?
+    val BreakPoint          = 3.U       //ebreak
+    val LoadAddrMisaligned  = 4.U       //MEM
+    val LoadAccessFault     = 5.U
+    val StoreAddrMisaligned = 6.U
+    val StoreAccessFailed   = 7.U       
+    val EcallFromUMode      = 8.U       //ID
+    val EcallFromSMode      = 9.U
+    val EcallFromMMode      = 11.U
+    val InstPageFault       = 12.U      //IF
+    val LoadPageFault       = 13.U
+    val StorePageFault      = 15.U
+    //not standards
+    val URet                = 16.U
+    val SRet                = 17.U
+    val MRet                = 19.U
+
+    def XRet(priv: UInt)  = 16.U | priv(1, 0)
+    def RetX(cause: UInt) = cause(1, 0)     //0 -> U, 1 -> S, 3 -> M
 }
