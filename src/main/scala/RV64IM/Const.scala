@@ -72,12 +72,14 @@ object CSRMODE {
 }
 
 object CONST {
-    val PC_INIT = "h400".U(64.W)
-
-    val TRAP_M  = "h000".U(64.W)
-    val TRAP_S  = "h100".U(64.W)
-    val TRAP_U  = "h200".U(64.W)
-
+    //address
+    val PC_INIT         = "h400".U(64.W)
+    val TRAP_M          = "h000".U(64.W)
+    val TRAP_S          = "h100".U(64.W)
+    val TRAP_U          = "h200".U(64.W)
+    val OS_ADDR         = "h300".U(64.W)
+    val DEBUGGER_ADDR   = "h350".U(64.W)
+    //CSR
     val MVENDORID   = "h114514".U
     val MARCHID     = "h1919810".U
     val NISHIYIGE   = "h1145141919810".U
@@ -312,6 +314,8 @@ object Cause{
     val SRet                = 17.U
     val MRet                = 19.U
 
-    def XRet(priv: UInt)  = 16.U | priv(1, 0)
-    def RetX(cause: UInt) = cause(1, 0)     //0 -> U, 1 -> S, 3 -> M
+    def XRet(priv: UInt)    = 16.U | priv(1, 0)
+    def RetX(cause: UInt)   = cause(1, 0)
+    def isRet(cause: UInt)  = cause(4,2) === 16.U(5.W)(4,2)      //16, 17, 18, 19. cause = 5.W
+    def ecallX(priv: UInt)  = 8.U(5.W) | priv(1, 0)              //8 9 11, priv + 8
 }

@@ -172,7 +172,7 @@ class Id extends RawModule{
             io.decInfo.branchOp.target  :=  jal_target
             io.flush_req                :=  true.B
         }
-        is(InstType.U){     //LUI, AUIPC. IF OPCODE(5) = 1, THEN LUI
+        is(InstType.U){     //LUI, rd = imm << 12, AUIPC, rd = pc + imm << 12 IF OPCODE(5) = 1, THEN LUI
             io.decInfo.oprand1  :=  Mux(inst(5), 0.U, pc)
             io.decInfo.oprand2  :=  imm_U << 12
             io.decInfo.wreg     :=  true.B
@@ -189,18 +189,26 @@ class Id extends RawModule{
                 io.decInfo.writeCSROp.data  :=  Mux(csr_legalWrite, csrNewVal, 0.U)
                 io.decInfo.writeCSROp.addr  :=  Mux(csr_legalWrite, csrAddr, 0.U)
                 io.decInfo.writeCSROp.en    :=  Mux(csr_legalWrite, true.B, false.B)
-            }.otherwise{        //xret 
-                val inst_p2         = inst(21, 20)  //or maybe (24, 20)?
+            }.otherwise{        //xret, ecall, ebreak
+                val inst_p2         = inst(21, 20)  //or maybe (24, 20)? XRet, ecall, ebreak
                 val X               = inst(29, 28)
                 io.exception_o.happen := true.B
                 //xret is very similar to exceptions: cancel all the next insts' execuations and jump to a target
                 switch(inst_p2){
                     is(SYS_INST.XRet){
-                        val cause       =  Mux(priv >= X, Cause.XRet(priv), Cause.IllegalInst)
-                        val new_pc_Sel  =  cause(4)     //16 for XRet
+                        val cause       =  Mux(priv >= X, Cause.XRet(X), Cause.IllegalInst)
+                        val new_pc_Sel  =  cause(4)     //XRet could become illegal for privilege reason
                         //xepc + 4 is determined by handler. We need no concern
                         io.exception_o.cause  :=  cause
                         io.exception_o.new_pc :=  Mux(new_pc_Sel, xepc, xtvec)
+                    }
+                    is(SYS_INST.ecall){
+                        io.exception_o.new_pc :=  CONST.OS_ADDR
+                        io.exception_o.cause  :=  Cause.ecallX(priv)
+                    }
+                    is(SYS_INST.ebreak){
+                        io.exception_o.new_pc :=  CONST.DEBUGGER_ADDR
+                        io.exception_o.cause  :=  Cause.BreakPoint
                     }
                 }
             }

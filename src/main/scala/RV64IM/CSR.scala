@@ -18,6 +18,7 @@ class CSR extends Module{
         val ID_2_CSR     = Input(new ID_2_CSR)
         val writeOp      = Input(new writeCSROp)
         val exception    = Input(new exception)
+
         val CSR_2_ID     = Output(new CSR_2_ID)
         val CSR_2_IF     = Output(new CSR_2_IF)
     })
@@ -98,53 +99,71 @@ class CSR extends Module{
         Priv.U  -> uepc,
     ))
     val is_Int      = io.exception.int
-    val cause       = Cat(is_Int, 0.U(58.W), io.exception.cause)    //1 + 58 + 5
+    val cause       = io.exception.cause
+    val write_cause = Cat(is_Int, 0.U(58.W), io.exception.cause)    //1 + 58 + 5
     val epc         = io.exception.pc
     val xtval       = io.exception.xtval
     val xtvec_mode  = xtvec(0) | xtvec(1)        //1 for vector, 0 for direct. the mode field is 2-bit wide
     val base        = xtvec(63, 2)
+
     when(io.exception.happen){
         //interrupt, exception. default go to M mode
-        //we treat XRet as exception, but they modify csr differently. other instructions cause the exception, and XRet recover from the exception
-        when(cause(4)){     //is XRet
-            //nextPriv := xx.xPP...
-            nextPriv := PriorityMux(Seq(
-
+        when(Cause.isRet(cause)){     //recover from a trap. The behavior of XRet is defined in document, p21
+            switch(Cause.RetX(cause)){
+                is(Priv.M) {
+                    mstatus.MIE  := mstatus.MPIE
+                    mstatus.MPIE := true.B
+                    mstatus.MPP  := Priv.U
+                    nextPriv     := mstatus.MPP
+                }
+                is(Priv.S) {
+                    mstatus.SIE  := mstatus.SPIE
+                    mstatus.SPIE := true.B
+                    mstatus.SPP  := Priv.U
+                    nextPriv     := mstatus.SPP
+                }
+                is(Priv.U) {
+                    mstatus.UIE  := mstatus.MPIE
+                    mstatus.UPIE := true.B
+                    nextPriv     := Priv.U  //no other posibilities
+                }
+            }        //elsewhen()
+        }.otherwise{
+            nextPriv :=  PriorityMux(Seq(
+                (!is_Int && !medeleg(cause(4,0)), Priv.M),
+                ( is_Int && !mideleg(cause(4,0)), Priv.M),
+                (!is_Int && !sedeleg(cause(4,0)), Priv.S),
+                ( is_Int && !sideleg(cause(4,0)), Priv.S),
+                (true.B,                          Priv.U)
             ))
-        }
-        nextPriv :=  PriorityMux(Seq(
-            (!is_Int && !medeleg(cause(4,0)), Priv.M),
-            ( is_Int && !mideleg(cause(4,0)), Priv.M),
-            (!is_Int && !sedeleg(cause(4,0)), Priv.S),
-            ( is_Int && !sideleg(cause(4,0)), Priv.S),
-            (true.B,                          Priv.U)
-        ))
 
-        switch(nextPriv) {
-            is(Priv.M) {
-                mstatus.MPIE := mstatus.MIE
-                mstatus.MIE  := 0.U                         //turn off interrupt before entering handler
-                mstatus.MPP  := priv
-                mepc         := epc
-                mcause       := cause
-                mtval        := xtval
-            }
-            is(Priv.S) {
-                mstatus.SPIE := mstatus.SIE
-                mstatus.SIE  := 0.U
-                mstatus.SPP  := (priv === Priv.S)   //1 bit wide
-                sepc         := epc
-                scause       := cause
-                stval        := xtval
-            }
-            is(Priv.U) {
-                mstatus.UPIE := mstatus.UIE
-                mstatus.UIE  := 0.U
-                uepc         := epc
-                ucause       := cause
-                utval        := xtval
+            switch(nextPriv) {
+                is(Priv.M) {
+                    mstatus.MPIE := mstatus.MIE
+                    mstatus.MIE  := 0.U                         //turn off interrupt before entering handler
+                    mstatus.MPP  := priv
+                    mepc         := epc
+                    mcause       := write_cause
+                    mtval        := xtval
+                }
+                is(Priv.S) {
+                    mstatus.SPIE := mstatus.SIE
+                    mstatus.SIE  := 0.U
+                    mstatus.SPP  := (priv === Priv.S)   //1 bit wide
+                    sepc         := epc
+                    scause       := write_cause
+                    stval        := xtval
+                }
+                is(Priv.U) {
+                    mstatus.UPIE := mstatus.UIE
+                    mstatus.UIE  := 0.U
+                    uepc         := epc
+                    ucause       := write_cause
+                    utval        := xtval
+                }
             }
         }
+        
         /*
         */
     }
@@ -270,22 +289,17 @@ class MStatus extends Bundle {  //M means the machine, not M mode
     val XS      = UInt(2.W)     //hardwired to 0
     val FS      = UInt(2.W)     //floating point unit's state
 /*the fileds above are not implemented...*/
-/*  xPIE holds the value of the interrupt-enable bit active 'prior to' the trap, and xPP holds the previous privilege mode.
-The xPP fields can only hold privilege modes up to x, so MPP is two bits wide and SPP is one bit wide. There is no need to set a UPP bit. In U mode only user trap is allowed
-(xPP is the priv level before entering the trap. only lower to higher is allowed)
-When a trap is taken from privilege mode y into privilege mode x, 
-xPIE <- xIE;    xIE <- 0;   xPP <- y.*/
-    val MPP     = UInt(2.W) //P: prior
+    val MPP     = UInt(2.W)     //P: prior to
     val WPRI2   = UInt(2.W)
     val SPP     = UInt(1.W)
     val MPIE    = Bool()
     val UBE     = Bool()
-    val SPIE    = Bool()    //higher level int is always allowed regardless of the ie bit. And lower level ie always disabled
-    val UPIE    = Bool()    //In fact it should be WPRI
+    val SPIE    = Bool()        //higher level int is always allowed regardless of the ie bit. And lower level ie always disabled
+    val UPIE    = Bool()        //not standard, in fact this field is WPRI
     val MIE     = Bool()
     val WPRI1_2 = Bool()
     val SIE     = Bool()
-    val UIE     = Bool()    //also WPRI
+    val UIE     = Bool()        //also WPRI
 }
 
 /*
