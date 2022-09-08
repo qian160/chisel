@@ -163,9 +163,6 @@ class CSR extends Module{
                 }
             }
         }
-        
-        /*
-        */
     }
 
     io.CSR_2_ID.xepc        :=  xepc
