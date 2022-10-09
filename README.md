@@ -1,3 +1,5 @@
+just for practice. Bugs are not carefully checked
+
 Chisel Project Template
 =======================
 
