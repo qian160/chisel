@@ -1,4 +1,4 @@
-just for practice. Bugs are not carefully checked
+只是为了练习用。。内含大量未检验的bug
 
 Chisel Project Template
 =======================
